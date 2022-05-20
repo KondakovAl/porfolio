@@ -194,10 +194,11 @@ body {
   padding: 15px 22px;
   border-left: 1px solid #1e2d3d;
   transition: all 0.3s ease-in;
-  &:hover {
-    &__item-pic {
-      fill: #ffffff;
-    }
+  & * {
+    transition: all 0.3s ease-in;
+  }
+  &:hover * {
+    fill: #ffffff;
   }
   &__item {
     display: flex;
