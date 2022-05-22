@@ -1,0 +1,72 @@
+/* Home-page Component */
+
+.home-page {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__wrapper {
+    display: flex;
+    gap: 130px;
+  }
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 81px;
+  }
+  &__about {
+    display: flex;
+    flex-direction: column;
+  }
+  &__github {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.about {
+  &__hello {
+    color: #e5e9f0;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  &__name {
+    color: #e5e9f0;
+    font: {
+      size: 62px;
+      weight: 400;
+    }
+    line-height: 80px;
+  }
+  &__position {
+    color: #4d5bce;
+    font-size: 32px;
+    line-height: 42px;
+  }
+}
+
+.github {
+  &__code {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-weight: 500;
+
+    &_const {
+      color: #4d5bce;
+    }
+    &_link {
+      color: #43d9ad;
+    }
+    &_equal {
+      color: #ffffff;
+    }
+    &_url {
+      color: #e99287;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

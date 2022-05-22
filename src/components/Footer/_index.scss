@@ -1,0 +1,50 @@
+/*Footer Component*/
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #1e2d3d;
+  &__social {
+    display: flex;
+  }
+}
+
+.social {
+  &__text {
+    padding: 15px 22px;
+    border-right: 1px solid #1e2d3d;
+  }
+  &__item-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #1e2d3d;
+    padding: 15px;
+    width: 50px;
+  }
+  &__item {
+    transition: 0.3s ease-in;
+    &:hover {
+      fill: #ffffff;
+    }
+  }
+}
+
+.social-github {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 15px 22px;
+  border-left: 1px solid #1e2d3d;
+  transition: all 0.3s ease-in;
+
+  &:hover .social-github__item-icon {
+    fill: #ffffff;
+  }
+  &__item {
+    display: flex;
+  }
+  &__item-icon {
+    transition: all 0.3s ease-in;
+  }
+}
