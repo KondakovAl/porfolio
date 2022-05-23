@@ -1,0 +1,45 @@
+/*Widget Component*/
+
+.widget {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    border-bottom: 1px solid $color-border-main;
+    width: 100%;
+    cursor: pointer;
+  }
+  &__header-text {
+    color: #fff;
+  }
+  &__header-btn-icon {
+  }
+  &__content {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.1s ease-in;
+    &.--show {
+      padding: 20px 15px;
+      opacity: 1;
+      height: fit-content;
+      border-bottom: 1px solid $color-border-main;
+    }
+  }
+}
+
+.folder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__item {
+  }
+
+  &__item-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

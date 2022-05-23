@@ -2,9 +2,10 @@
 
 .header {
   display: flex;
-  border-bottom: 1px solid #1e2d3d;
+  border-bottom: 1px solid $color-border-main;
   &__logo {
-    padding: 18px 154px 18px 22px;
+    width: $aside-width;
+    padding: 18px 22px;
   }
   &__navigation {
     display: flex;
@@ -16,7 +17,7 @@
   &__item {
     position: relative;
     padding: 18px 32px;
-    border-left: 1px solid #1e2d3d;
+    border-left: 1px solid $color-border-main;
     transition: 0.3s ease-in;
 
     &:hover {
@@ -36,6 +37,6 @@
 
   &__item:nth-child(3) {
     margin-right: auto;
-    border-right: 1px solid #1e2d3d;
+    border-right: 1px solid $color-border-main;
   }
 }

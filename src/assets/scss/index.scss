@@ -21,6 +21,11 @@ img {
   display: block;
 }
 
+ul,
+ol {
+  list-style: none;
+}
+
 #root {
   height: 100vh;
   padding: 1.5rem;
@@ -33,6 +38,7 @@ select {
   font: inherit;
   color: inherit;
   border: none;
+  background: transparent;
 }
 
 body {
@@ -51,7 +57,7 @@ body {
   flex-direction: column;
   min-height: 100%;
   background: $bg-color;
-  border: 1px solid #1e2d3d;
+  border: 1px solid $color-border-main;
   border-radius: 8px;
 }
 
@@ -60,29 +66,39 @@ body {
 .about-page {
   flex: 1 1 auto;
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: auto 1fr;
   &__aside {
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid #1e2d3d;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    width: 310px;
+    // display: flex;
+    // flex-direction: column;
+    // border-right: 1px solid #1e2d3d;
   }
 }
 
-.widget {
-  &____header {
+.aside {
+  &__content {
+    border-left: 1px solid $color-border-main;
+    border-right: 1px solid $color-border-main;
   }
-  &__header-btn {
+  &__tabs {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.tabs {
+  &__item-link {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 15px;
-    background: transparent;
-    border-bottom: 1px solid #1e2d3d;
-    width: 100%;
+    justify-content: center;
+    padding: 15px;
   }
-  &__header-btn-text {
-    color: #fff;
-  }
-  &__header-btn-icon {
+  &__item {
+    transition: 0.3s ease-in;
+    &:hover {
+      fill: #ffffff;
+    }
   }
 }
