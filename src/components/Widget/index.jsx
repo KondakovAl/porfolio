@@ -1,56 +1,35 @@
-import React from "react";
+import { React, useState } from "react";
 
 /*Widget Icons*/
 import { ReactComponent as WidgetIcon } from "../../assets/images/widget-icon.svg";
 //*Folders Icons*/
 import { ReactComponent as Folder } from "../../assets/images/folder.svg";
 
-const index = ({ title, active, setActive }) => {
+const Widget = ({ title, links }) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="widget">
-      <button className="widget__header" onClick={() => setActive(title)}>
+    <div className={`widget ${isOpen ? "--show" : " "}`}>
+      <div className="widget__header" onClick={() => setIsOpen(!isOpen)}>
         <WidgetIcon className="widget__header-icon" fill="white" />
         <span className="widget__header-text">{title}</span>
-      </button>
-      <div className={(active === title ? "--show" : "") + " widget__content"}>
+      </div>
+      <div className="widget__content">
         <ul className="folder">
-          <li className="folder__item">
-            <button className="folder__item-btn">
+          {links.map((link, index) => (
+            <li className="folder__item" key={index}>
               <Folder
-                className="folder__item-btn-icon"
+                className="folder__item-icon"
                 width="16"
                 height="14"
-                fill="#E99287"
+                fill={link.color}
               />
-              <span className="folder__item-btn-pic">bio</span>
-            </button>
-          </li>
-          <li className="folder__item">
-            <button className="folder__item-btn">
-              <Folder
-                className="folder__item-btn-icon"
-                width="16"
-                height="14"
-                fill="#43D9AD"
-              />
-              <span className="folder__item-btn-pic">education</span>
-            </button>
-          </li>
-          <li className="folder__item">
-            <button className="folder__item-btn">
-              <Folder
-                className="folder__item-btn-icon"
-                width="16"
-                height="14"
-                fill="#3A49A4"
-              />
-              <span className="folder__item-btn-pic">interests</span>
-            </button>
-          </li>
+              <span className="folder__item-text">{link.name}</span>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
   );
 };
 
-export default index;
+export default Widget;

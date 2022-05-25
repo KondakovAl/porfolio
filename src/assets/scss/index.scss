@@ -50,6 +50,7 @@ body {
   line-height: $line-height;
   color: $primary-color;
   background: #010c15;
+  overflow: hidden;
 }
 
 .layout {
@@ -66,14 +67,16 @@ body {
 .about-page {
   flex: 1 1 auto;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr 1fr;
   &__aside {
     display: grid;
     grid-template-columns: auto 1fr;
-    width: 310px;
-    // display: flex;
-    // flex-direction: column;
-    // border-right: 1px solid #1e2d3d;
+    width: $aside-width;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $color-border-main;
   }
 }
 
@@ -100,5 +103,45 @@ body {
     &:hover {
       fill: #ffffff;
     }
+  }
+}
+
+.file-tabs {
+  border-bottom: 1px solid $color-border-main;
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    padding: 10px 15px;
+    border-right: 1px solid $color-border-main;
+  }
+  &__tab-close {
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover .file-tabs__tab-close-icon {
+      fill: #ffffff;
+    }
+  }
+  &__tab-close-icon {
+    transition: all 0.3s ease-in;
+  }
+}
+
+.info {
+  &__scroll {
+    overflow: hidden;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    flex-grow: 1;
+    padding: 2rem;
+    height: 100%;
+    overflow-y: auto;
+  }
+  &__personal-info {
+    height: 100%;
   }
 }

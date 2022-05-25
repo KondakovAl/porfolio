@@ -6,6 +6,7 @@
   &__logo {
     width: $aside-width;
     padding: 18px 22px;
+    border-right: 1px solid $color-border-main;
   }
   &__navigation {
     display: flex;
@@ -17,26 +18,36 @@
   &__item {
     position: relative;
     padding: 18px 32px;
-    border-left: 1px solid $color-border-main;
+    border-right: 1px solid $color-border-main;
     transition: 0.3s ease-in;
+    cursor: pointer;
 
-    &:hover {
-      color: #ffffff;
-    }
-
-    &:active::after {
+    &::after {
       position: absolute;
       left: 0;
       bottom: 0;
       content: " ";
-      background: #fea55f;
+      background: transparent;
       height: 3px;
       width: 100%;
     }
+
+    &.--active {
+      color: #ffffff;
+      &::after {
+        background: #fea55f;
+        transition: 0.5s ease-in;
+      }
+    }
   }
 
-  &__item:nth-child(3) {
-    margin-right: auto;
-    border-right: 1px solid $color-border-main;
+  &__item:last-child {
+    margin-left: auto;
+    border-left: 1px solid $color-border-main;
+  }
+
+  &.--active {
+    .navigation__item:after {
+    }
   }
 }
