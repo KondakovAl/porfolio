@@ -1,20 +1,23 @@
 import React from "react";
+import Input from "../Input";
+import Textarea from "../Textarea";
 
-const Form = () => {
+const Form = ({ inputs, textarea }) => {
   return (
     <form className="form">
-      <div className="form__group">
-        <label className="form__label">_name:</label>
-        <input type="text" className="form__input" />
-      </div>
-      <div className="form__group">
-        <label className="form__label">_email:</label>
-        <input type="email" className="form__input" />
-      </div>
-      <div className="form__group">
-        <label className="form__label">_message:</label>
-        <textarea type="text" className="form__textarea"></textarea>
-      </div>
+      {inputs.map((input, index) => (
+        <Input
+          key={index}
+          label={input.label}
+          type={input.type}
+          name={input.name}
+        />
+      ))}
+      <Textarea
+        label={textarea.label}
+        type={textarea.type}
+        name={textarea.name}
+      />
       <input type="submit" value="submit-message" className="form__submit" />
     </form>
   );
