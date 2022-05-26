@@ -31,9 +31,7 @@ ol {
   padding: 1.5rem;
 }
 
-input,
 button,
-textarea,
 select {
   font: inherit;
   color: inherit;
@@ -50,7 +48,6 @@ body {
   line-height: $line-height;
   color: $primary-color;
   background: #010c15;
-  overflow: hidden;
 }
 
 .layout {
@@ -69,9 +66,8 @@ body {
   display: grid;
   grid-template-columns: auto 1fr 1fr;
   &__aside {
-    display: grid;
-    grid-template-columns: auto 1fr;
     width: $aside-width;
+    border-right: 1px solid $color-border-main;
   }
   &__content {
     display: flex;
@@ -82,10 +78,6 @@ body {
 
 .aside {
   &__content {
-    border-left: 1px solid $color-border-main;
-    border-right: 1px solid $color-border-main;
-  }
-  &__tabs {
     display: flex;
     flex-direction: column;
   }
@@ -143,5 +135,30 @@ body {
   }
   &__personal-info {
     height: 100%;
+  }
+}
+
+/*Contact Page Component*/
+
+.contact-page {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  &__aside {
+    width: $aside-width;
+    border-right: 1px solid $color-border-main;
+  }
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid $color-border-main;
+  }
+}
+
+.aside {
+  &__content {
+    display: flex;
+    flex-direction: column;
   }
 }

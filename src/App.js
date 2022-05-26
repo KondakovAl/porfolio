@@ -4,11 +4,9 @@ import Header from "./components/Header/index";
 import Widget from "./components/Widget/index";
 import HomePage from "./components/HomePage/index";
 import Footer from "./components/Footer/index";
+import Form from "./components/Form/index";
 
 /*About-page Icons*/
-/*Tabs Icons*/
-import { ReactComponent as TabsProf } from "./assets/images/tabs-prof.svg";
-import { ReactComponent as TabsPers } from "./assets/images/tabs-pers.svg";
 import { ReactComponent as Close } from "./assets/images/close.svg";
 
 const data = {
@@ -58,24 +56,6 @@ const App = () => {
         <>
           <main className="about-page">
             <aside className="about-page__aside aside">
-              <nav className="aside__tabs tabs">
-                <a className="tabs__item-link">
-                  <TabsProf
-                    className="tabs__item"
-                    width="24"
-                    height="25"
-                    fill="#607B96"
-                  />
-                </a>
-                <a className="tabs__item-link">
-                  <TabsPers
-                    className="tabs__item"
-                    width="24"
-                    height="25"
-                    fill="#607B96"
-                  />
-                </a>
-              </nav>
               <div className="aside__content">
                 {data.widgets.map((widget, index) => (
                   <Widget
@@ -114,28 +94,32 @@ const App = () => {
                     numquam, sed aspernatur quasi rem aspe overflow: hidden;
                     laudantium aliquid dolor, et explicabo! Laborum impedit
                     vitae est molestiae! Commodi ad nesciunt id iure illo. Vitae
-                    aliquid aut maxime ea facere repellendus quos assumenda
-                    recusandae cum labore, unde atque fugit ipsa, quis, dolore
-                    cumque enim laborum omnis? Aliq overflow: hidden;uid numquam
-                    earum sapiente facere minima labore accusantium! Periure
-                    illo. Vitae aliquid aut maxime ea facere repellendus quos
-                    assumenda recusandae cum labore, unde atque fugit ipsa,
-                    quis, dolore cumque enim laborum omnis? Aliq overflow:
-                    hidden;uid numquam earum sapiente facere minima labore
-                    accusantium! Perspiciatis inciduntiure illo. Vitae aliquid
-                    aut maxime ea facere repellendus quos assumenda recusandae
-                    cum labore, unde atque fugit ipsa, quis, dolore cumque enim
-                    laborum omnis? Aliq overflow: hidden;uid numquam earum
-                    sapiente facere minima labore accusantium! Perspiciatis
-                    inciduntiure illo. Vitae aliquid aut maxime ea facere
-                    repellendus quos assumenda recusandae cum labore, unde atque
-                    fugit ipsa, quis, dolore cumque enim laborum omnis? Aliq
-                    overflow: hidden;uid numquam earum sapiente facere minima
-                    labore accusantium! Perspiciatis inciduntspiciatis incidunt
+                    aliquid aut maxduntspiciatis incidunt
                   </div>
                 </div>
               </div>
             </div>
+          </main>
+        </>
+      )}
+      {variant === "contact-me" && (
+        <>
+          <main className="contact-page">
+            <aside className="contact-page__aside aside">
+              <div className="aside__content">
+                {data.widgets.map((widget, index) => (
+                  <Widget
+                    key={index}
+                    title={widget.title}
+                    links={widget.links}
+                  />
+                ))}
+              </div>
+            </aside>
+            <div className="contact-page__form">
+              <Form />
+            </div>
+            <div className="contact-page__represent"></div>
           </main>
         </>
       )}
