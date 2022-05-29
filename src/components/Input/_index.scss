@@ -4,7 +4,11 @@
   &__group {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    margin: 0 0 5px;
+    min-height: 100px;
+  }
+  &__label {
+    margin: 0 0 10px;
   }
   &__input {
     height: 40px;
@@ -20,19 +24,12 @@
       border: 1px solid #607b96;
       box-shadow: 0px 0px 0px 2px #607b964d;
     }
-
-    &:invalid {
-      border-width: 1px 1px 1px 10px;
-      border-color: red;
-    }
-    &:invalid:invalid {
-      border-width: 1px 1px 1px 10px;
-      border-color: red;
-    }
-
-    &:focus:valid {
-      border-width: 1px 1px 1px 10px;
-      border-color: green;
-    }
+  }
+  &__label-error {
+    text-align: end;
+    margin: 5px 0 0;
+    font-size: 12px;
+    line-height: 12px;
+    color: #d82121;
   }
 }

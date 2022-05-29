@@ -1,9 +1,7 @@
 /*Textarea*/
 .form {
-  &__group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  &__group:nth-child(3) {
+    min-height: 193px;
   }
   &__textarea {
     height: 145px;

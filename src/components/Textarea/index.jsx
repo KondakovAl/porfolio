@@ -1,10 +1,18 @@
 import React from "react";
 
-const Textarea = ({ label, type, name }) => {
+const Textarea = ({ title, name, register, required, errors, errorText }) => {
   return (
     <div className="form__group">
-      <label className="form__label">_{label}:</label>
-      <textarea type={type} className="form__textarea" name={name}></textarea>
+      <label className="form__label">_{title}:</label>
+      <textarea
+        {...register(name, {
+          required: required,
+        })}
+        className="form__textarea"
+      ></textarea>
+      {errors && errors[name] && (
+        <div className="form__label-error">{errorText}</div>
+      )}
     </div>
   );
 };
