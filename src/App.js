@@ -75,12 +75,12 @@ const data = {
     ],
   },
 
-  inputs: [
-    { label: "name", type: "text", name: "user-name" },
-    { label: "email", type: "email", name: "user-email" },
-  ],
+  // inputs: [
+  //   { label: "name", type: "text", name: "user-name" },
+  //   { label: "email", type: "email", name: "user-email" },
+  // ],
 
-  textarea: [{ label: "message", type: "text", name: "user-message" }],
+  // textarea: { label: "message", type: "text", name: "user-message" },
 };
 
 function App() {
@@ -142,7 +142,7 @@ function App() {
               widgets={data.widgets}
             />
             <div className="contact-page__form">
-              <Form inputs={data.inputs} textarea={data.textarea} />
+              <Form />
             </div>
             <div className="contact-page__represent">
               <div className="represent__lines">

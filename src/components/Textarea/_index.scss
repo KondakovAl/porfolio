@@ -1,1 +1,24 @@
 /*Textarea*/
+.form {
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__textarea {
+    height: 145px;
+    resize: none;
+    color: #465e77;
+    padding: 10px 15px;
+    width: 100%;
+    background: #011221;
+    outline: none;
+    border: 1px solid $color-border-main;
+    border-radius: 8px;
+    transition: all 0.3s ease-out;
+    &:focus {
+      border: 1px solid #607b96;
+      box-shadow: 0px 0px 0px 2px #607b964d;
+    }
+  }
+}
