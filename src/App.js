@@ -9,6 +9,7 @@ import Aside from "./components/Aside/index";
 
 /*About-page Icons*/
 import { ReactComponent as Close } from "./assets/images/close.svg";
+import { ReactComponent as Folder } from "./assets/images/folder.svg";
 
 const data = {
   links: [
@@ -74,17 +75,14 @@ const data = {
       },
     ],
   },
-
-  // inputs: [
-  //   { label: "name", type: "text", name: "user-name" },
-  //   { label: "email", type: "email", name: "user-email" },
-  // ],
-
-  // textarea: { label: "message", type: "text", name: "user-message" },
 };
 
 function App() {
   const [variant, setVariant] = useState("hello");
+
+  const Now = new Date();
+
+  console.log(Now.toDateString());
 
   return (
     <div className="layout">

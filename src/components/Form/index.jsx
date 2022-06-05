@@ -9,6 +9,7 @@ const Form = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
@@ -18,6 +19,10 @@ const Form = () => {
       setFormIsSubmit(true);
     }, 600);
   };
+
+  // const [currentName, setCurrentName] = useState();
+  // const [currentEmail, setCurrentEmail] = useState();
+  // const [currentMessage, setCurrentMessage] = useState();
 
   if (formIsSubmit) {
     return (
@@ -30,6 +35,10 @@ const Form = () => {
     );
   }
 
+  const CurrentName = watch("name");
+  const CurrentEmail = watch("email");
+  const CurrentMessage = watch("message");
+
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -40,6 +49,7 @@ const Form = () => {
         errors={errors}
         errorText="Enter your name"
         validationType="name"
+        // setCurrentState={setCurrentName}
       />
       <Input
         title="email"
@@ -49,6 +59,7 @@ const Form = () => {
         errors={errors}
         errorText="Enter the email address in the format example@example.com"
         validationType="email"
+        // setCurrentState={setCurrentEmail}
       />
 
       <Textarea
@@ -58,8 +69,12 @@ const Form = () => {
         register={register}
         errors={errors}
         errorText="Enter your message"
+        // setCurrentState={setCurrentMessage}
       />
       <SendButton />
+      <div>{CurrentName}</div>
+      <div>{CurrentEmail}</div>
+      <div>{CurrentMessage}</div>
     </form>
   );
 };

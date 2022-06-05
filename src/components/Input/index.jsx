@@ -18,8 +18,10 @@ const Input = ({
     switch (validationType) {
       case "name":
         return regExpName.test(value);
+
       case "email":
         return regExpEmail.test(value);
+
       default:
         return true;
     }
