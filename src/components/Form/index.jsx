@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../Input";
 import Textarea from "../Textarea";
 import SendButton from "../SendButton";
 
-const Form = () => {
+const Form = ({ setFormInner }) => {
   const [formIsSubmit, setFormIsSubmit] = useState(false);
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm({ mode: "onChange" });
 
@@ -20,9 +21,13 @@ const Form = () => {
     }, 600);
   };
 
-  // const [currentName, setCurrentName] = useState();
-  // const [currentEmail, setCurrentEmail] = useState();
-  // const [currentMessage, setCurrentMessage] = useState();
+  useEffect(() => {
+    setFormInner({
+      name: watch("name"),
+      email: watch("email"),
+      message: watch("message"),
+    });
+  }, [watch("name"), watch("email"), watch("message")]);
 
   if (formIsSubmit) {
     return (
@@ -31,13 +36,19 @@ const Form = () => {
         <p className="form-submited__text">
           Your message has been accepted. You will recieve answer really soon!
         </p>
+        <button
+          className="form-submited__button form__button"
+          onClick={() => {
+            setFormInner(null);
+            setFormIsSubmit(false);
+            reset(null);
+          }}
+        >
+          send-new-message
+        </button>
       </div>
     );
   }
-
-  const CurrentName = watch("name");
-  const CurrentEmail = watch("email");
-  const CurrentMessage = watch("message");
 
   return (
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -49,7 +60,6 @@ const Form = () => {
         errors={errors}
         errorText="Enter your name"
         validationType="name"
-        // setCurrentState={setCurrentName}
       />
       <Input
         title="email"
@@ -59,7 +69,6 @@ const Form = () => {
         errors={errors}
         errorText="Enter the email address in the format example@example.com"
         validationType="email"
-        // setCurrentState={setCurrentEmail}
       />
 
       <Textarea
@@ -69,12 +78,8 @@ const Form = () => {
         register={register}
         errors={errors}
         errorText="Enter your message"
-        // setCurrentState={setCurrentMessage}
       />
       <SendButton />
-      <div>{CurrentName}</div>
-      <div>{CurrentEmail}</div>
-      <div>{CurrentMessage}</div>
     </form>
   );
 };

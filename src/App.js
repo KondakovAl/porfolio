@@ -79,10 +79,7 @@ const data = {
 
 function App() {
   const [variant, setVariant] = useState("hello");
-
-  const Now = new Date();
-
-  console.log(Now.toDateString());
+  const [formInner, setFormInner] = useState(null);
 
   return (
     <div className="layout">
@@ -140,7 +137,7 @@ function App() {
               widgets={data.widgets}
             />
             <div className="contact-page__form">
-              <Form />
+              <Form setFormInner={setFormInner} />
             </div>
             <div className="contact-page__represent">
               <div className="represent__lines">
@@ -152,7 +149,7 @@ function App() {
                       button <span className="line__text_pink"> = </span>
                       document
                     </span>
-                    .<span className="line__text_blue">querySelector</span>{" "}
+                    .<span className="line__text_blue">querySelector</span>
                     &#40;<span className="line__text_orange">'#sendBtn'</span>
                     &#41;;
                   </code>
@@ -173,29 +170,41 @@ function App() {
                 <div className="line">
                   <div className="line__number">4</div>
                   <code className="line__text">
-                    <span className="line__text_blue">name:</span>{" "}
-                    <span className="line__text_orange">" "</span>,
+                    <span className="line__text_blue">name:</span>
+                    <span className="line__text_orange">
+                      "{formInner?.name}"
+                    </span>
+                    ,
                   </code>
                 </div>
                 <div className="line">
                   <div className="line__number">5</div>
                   <code className="line__text">
-                    <span className="line__text_blue">email:</span>{" "}
-                    <span className="line__text_orange">" "</span>,{" "}
+                    <span className="line__text_blue">email:</span>
+                    <span className="line__text_orange">
+                      "{formInner?.email}"
+                    </span>
+                    ,
                   </code>
                 </div>
                 <div className="line">
                   <div className="line__number">6</div>
                   <code className="line__text">
-                    <span className="line__text_blue">message:</span>{" "}
-                    <span className="line__text_orange">" "</span>,
+                    <span className="line__text_blue">message:</span>
+                    <span className="line__text_orange">
+                      "{formInner?.message}"
+                    </span>
+                    ,
                   </code>
                 </div>
                 <div className="line">
                   <div className="line__number">7</div>
                   <code className="line__text">
-                    <span className="line__text_blue">date:</span>{" "}
-                    <span className="line__text_orange">" "</span>,
+                    <span className="line__text_blue">date:</span>
+                    <time className="line__text_orange">
+                      "{new Date().toDateString()}"
+                    </time>
+                    ,
                   </code>
                 </div>
                 <div className="line">
@@ -212,8 +221,7 @@ function App() {
                     <span className="line__text_blue">button</span>.
                     <span className="line__text_blue">addEventListener</span>
                     &#40;<span className="line__text_orange">'click'</span>,
-                    &#40; &#41; <span className="line__text_pink">=></span>{" "}
-                    &#123;
+                    &#40; &#41; <span className="line__text_pink">=></span>
                   </code>
                 </div>
                 <div className="line">
