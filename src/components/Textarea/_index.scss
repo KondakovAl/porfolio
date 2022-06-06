@@ -21,6 +21,7 @@
     &.error {
       border-width: 1px 1px 1px 10px;
       border-color: $color-error;
+      color: $color-error;
       &:focus {
         box-shadow: none;
       }
