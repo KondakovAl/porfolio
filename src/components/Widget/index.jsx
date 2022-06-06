@@ -17,12 +17,7 @@ const Widget = ({ title, links }) => {
         <ul className="folder">
           {links.map((link, index) => (
             <li className="folder__item" key={index}>
-              <Folder
-                className="folder__item-icon"
-                width="16"
-                height="14"
-                fill={link.color}
-              />
+              <>{link.pic}</>
               <span className="folder__item-text">{link.name}</span>
             </li>
           ))}

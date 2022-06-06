@@ -8,7 +8,7 @@ const Textarea = ({ title, name, register, required, errors, errorText }) => {
         {...register(name, {
           required: required,
         })}
-        className="form__textarea"
+        className={`form__textarea ${errors && errors[name] ? "error" : ""}`}
       ></textarea>
       {errors && errors[name] && (
         <div className="form__label-error">{errorText}</div>

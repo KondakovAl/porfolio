@@ -18,6 +18,13 @@
       border: 1px solid #607b96;
       box-shadow: 0px 0px 0px 2px #607b964d;
     }
+    &.error {
+      border-width: 1px 1px 1px 10px;
+      border-color: $color-error;
+      &:focus {
+        box-shadow: none;
+      }
+    }
     &::-webkit-scrollbar {
       width: 0;
     }

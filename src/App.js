@@ -10,6 +10,10 @@ import Aside from "./components/Aside/index";
 /*About-page Icons*/
 import { ReactComponent as Close } from "./assets/images/close.svg";
 import { ReactComponent as Folder } from "./assets/images/folder.svg";
+import { ReactComponent as Mail } from "./assets/images/mail.svg";
+import { ReactComponent as Phone } from "./assets/images/phone.svg";
+import { ReactComponent as Development } from "./assets/images/development.svg";
+import { ReactComponent as Skills } from "./assets/images/skills.svg";
 
 const data = {
   links: [
@@ -24,25 +28,23 @@ const data = {
       {
         title: "personal-info",
         links: [
-          { name: "bio", color: "#E99287" },
-          { name: "interests", color: "#43D9AD" },
-          { name: "education", color: "#3A49A4" },
+          { name: "bio", pic: <Folder fill="#E99287" /> },
+          { name: "interests", pic: <Folder fill="#43D9AD" /> },
+          { name: "education", pic: <Folder fill="#3A49A4" /> },
         ],
       },
       {
         title: "professional-info",
         links: [
-          { name: "1", color: "#E99287" },
-          { name: "2", color: "#43D9AD" },
-          { name: "3", color: "#3A49A4" },
+          { name: "development", pic: <Development fill="cornflowerblue" /> },
+          { name: "skills", pic: <Skills fill="#C98BDF" /> },
         ],
       },
       {
         title: "contacts",
         links: [
-          { name: "s", color: "#E99287" },
-          { name: "a", color: "#43D9AD" },
-          { name: "s", color: "#3A49A4" },
+          { name: "kondakovalse@gmail.com", pic: <Mail fill="#607B96" /> },
+          { name: "+79224170901", pic: <Phone fill="#607B96" /> },
         ],
       },
     ],
@@ -60,9 +62,8 @@ const data = {
       {
         title: "contacts",
         links: [
-          { name: "bio", color: "#E99287" },
-          { name: "interests", color: "#43D9AD" },
-          { name: "education", color: "#3A49A4" },
+          { name: "kondakovalse@gmail.com", pic: <Mail fill="#607B96" /> },
+          { name: "+79224170901", pic: <Phone fill="#607B96" /> },
         ],
       },
       {
@@ -221,7 +222,7 @@ function App() {
                     <span className="line__text_blue">button</span>.
                     <span className="line__text_blue">addEventListener</span>
                     &#40;<span className="line__text_orange">'click'</span>,
-                    &#40; &#41; <span className="line__text_pink">=></span>
+                    &#40; &#41; <span className="line__text_pink">=&gt;</span>
                   </code>
                 </div>
                 <div className="line">

@@ -30,7 +30,7 @@ const Input = ({
     <div className="form__group">
       <label className="form__label">_{title}:</label>
       <input
-        className="form__input"
+        className={`form__input ${errors && errors[name] ? "error" : ""}`}
         {...register(name, {
           required: required,
           validate: (value) =>
