@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./assets/scss/index.scss";
 import Header from "./components/Header/index";
-import Widget from "./components/Widget/index";
+
 import HomePage from "./components/HomePage/index";
 import Footer from "./components/Footer/index";
 import Form from "./components/Form/index";
@@ -14,6 +14,12 @@ import { ReactComponent as Mail } from "./assets/images/mail.svg";
 import { ReactComponent as Phone } from "./assets/images/phone.svg";
 import { ReactComponent as Development } from "./assets/images/development.svg";
 import { ReactComponent as Skills } from "./assets/images/skills.svg";
+import { ReactComponent as ReactIcon } from "./assets/images/react.svg";
+import { ReactComponent as HTMLIcon } from "./assets/images/html.svg";
+import { ReactComponent as CSSIcon } from "./assets/images/css.svg";
+import { ReactComponent as SassIcon } from "./assets/images/sass.svg";
+import { ReactComponent as ReduxIcon } from "./assets/images/redux.svg";
+import { ReactComponent as TSIcon } from "./assets/images/TS.svg";
 
 const data = {
   links: [
@@ -43,8 +49,16 @@ const data = {
       {
         title: "contacts",
         links: [
-          { name: "kondakovalse@gmail.com", pic: <Mail fill="#607B96" /> },
-          { name: "+79224170901", pic: <Phone fill="#607B96" /> },
+          {
+            name: "kondakovalse@gmail.com",
+            pic: <Mail fill="#607B96" />,
+            withEmailLink: true,
+          },
+          {
+            name: "+79224170901",
+            pic: <Phone fill="#607B96" />,
+            withPhoneLink: true,
+          },
         ],
       },
     ],
@@ -52,9 +66,47 @@ const data = {
       {
         title: "projects",
         links: [
-          { name: "s", color: "#E99287" },
-          { name: "a", color: "#43D9AD" },
-          { name: "s", color: "#3A49A4" },
+          {
+            name: "HTML",
+            id: "HTML",
+            pic: (
+              <HTMLIcon
+                fill="rgba(96, 123, 150, 0.4)
+            "
+              />
+            ),
+            withCheckBox: true,
+          },
+          {
+            name: "CSS",
+            id: "CSS",
+            pic: <CSSIcon fill="rgba(96, 123, 150, 0.4)" />,
+            withCheckBox: true,
+          },
+          {
+            name: "Sass",
+            id: "Sass",
+            pic: <SassIcon fill="rgba(96, 123, 150, 0.4)" />,
+            withCheckBox: true,
+          },
+          {
+            name: "React",
+            id: "React",
+            pic: <ReactIcon fill="rgba(96, 123, 150, 0.4)" />,
+            withCheckBox: true,
+          },
+          {
+            name: "TS",
+            id: "TS",
+            pic: <TSIcon fill="rgba(96, 123, 150, 0.4)" />,
+            withCheckBox: true,
+          },
+          {
+            name: "Redux",
+            id: "Redux",
+            pic: <ReduxIcon fill="rgba(96, 123, 150, 0.4)" />,
+            withCheckBox: true,
+          },
         ],
       },
     ],

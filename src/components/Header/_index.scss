@@ -43,6 +43,7 @@
 
   &__item:last-child {
     margin-left: auto;
+    border: none;
     border-left: 1px solid $color-border-main;
   }
 
