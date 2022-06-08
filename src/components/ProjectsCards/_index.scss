@@ -1,0 +1,56 @@
+/*ProjectsCards Component*/
+
+.projects {
+  padding: 2rem;
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    place-items: center;
+    gap: 25px;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  //   min-width: 375px;
+
+  &__header {
+    &-title {
+      color: #5565e8;
+      margin: 0 10px 0 0;
+    }
+    &-title {
+    }
+  }
+  &__main {
+    background: $bg-color-card;
+    border: 1px solid $color-border-main;
+    border-radius: 15px;
+    &-image {
+      border-radius: 15px 15px 0 0;
+      &-container {
+        border-bottom: 1px solid $color-border-main;
+        position: relative;
+      }
+    }
+    &-icons-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      position: absolute;
+      top: 19px;
+      right: 18px;
+    }
+    &-container {
+      display: flex;
+      flex-direction: column;
+      gap: 21px;
+      padding: 25px 32px 32px;
+    }
+    &-description {
+      text-align: justify;
+    }
+  }
+}

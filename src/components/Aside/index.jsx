@@ -11,8 +11,7 @@ const Aside = ({ variant, widgets, className }) => {
             title={widget.title}
             links={widget.links}
             withCheckBox
-            withEmailLink
-            withPhoneLink
+            linkType
           />
         ))}
       </div>

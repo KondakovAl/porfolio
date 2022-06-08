@@ -1,0 +1,23 @@
+/*Tabs Component*/
+
+.file-tabs {
+  border-bottom: 1px solid $color-border-main;
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    padding: 10px 15px;
+    border-right: 1px solid $color-border-main;
+  }
+  &__tab-close {
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover .file-tabs__tab-close-icon {
+      fill: #ffffff;
+    }
+  }
+  &__tab-close-icon {
+    transition: all 0.3s ease-in;
+  }
+}

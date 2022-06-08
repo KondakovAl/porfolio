@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./assets/scss/index.scss";
-import Header from "./components/Header/index";
 
+/*Components*/
+
+import Header from "./components/Header/index";
 import HomePage from "./components/HomePage/index";
 import Footer from "./components/Footer/index";
 import Form from "./components/Form/index";
 import Aside from "./components/Aside/index";
+import Tabs from "./components/Tabs/index";
+import ProjectsCards from "./components/ProjectsCards/index";
 
-/*About-page Icons*/
-import { ReactComponent as Close } from "./assets/images/close.svg";
+/*Icons*/
+
 import { ReactComponent as Folder } from "./assets/images/folder.svg";
 import { ReactComponent as Mail } from "./assets/images/mail.svg";
 import { ReactComponent as Phone } from "./assets/images/phone.svg";
@@ -20,6 +24,16 @@ import { ReactComponent as CSSIcon } from "./assets/images/css.svg";
 import { ReactComponent as SassIcon } from "./assets/images/sass.svg";
 import { ReactComponent as ReduxIcon } from "./assets/images/redux.svg";
 import { ReactComponent as TSIcon } from "./assets/images/TS.svg";
+
+/*Cards Icons*/
+import { ReactComponent as HTMLIconCard } from "./assets/images/html-card.svg";
+import { ReactComponent as CSSIconCard } from "./assets/images/css-card.svg";
+// import { ReactComponent as SassIconCard } from "./assets/images/sass-card.svg";
+import { ReactComponent as ReactIconCard } from "./assets/images/react-card.svg";
+
+/*Images*/
+import project1 from "./assets/images/project1.png";
+import project2 from "./assets/images/project2.png";
 
 const data = {
   links: [
@@ -52,12 +66,12 @@ const data = {
           {
             name: "kondakovalse@gmail.com",
             pic: <Mail fill="#607B96" />,
-            withEmailLink: true,
+            linkType: "email",
           },
           {
             name: "+79224170901",
             pic: <Phone fill="#607B96" />,
-            withPhoneLink: true,
+            linkType: "phone",
           },
         ],
       },
@@ -110,12 +124,21 @@ const data = {
         ],
       },
     ],
+
     "contact-me": [
       {
         title: "contacts",
         links: [
-          { name: "kondakovalse@gmail.com", pic: <Mail fill="#607B96" /> },
-          { name: "+79224170901", pic: <Phone fill="#607B96" /> },
+          {
+            name: "kondakovalse@gmail.com",
+            pic: <Mail fill="#607B96" />,
+            linkType: "email",
+          },
+          {
+            name: "+79224170901",
+            pic: <Phone fill="#607B96" />,
+            linkType: "phone",
+          },
         ],
       },
       {
@@ -128,9 +151,43 @@ const data = {
       },
     ],
   },
+
+  projects: {
+    cards: [
+      {
+        title: "Ava App website",
+        direction: "front-end",
+        src: project1,
+        alt: "project",
+        description:
+          "This website is a project, that I did to сonsolidate my skills after learning HTML and CSS.",
+        stack: [{ icon: <HTMLIconCard /> }, { icon: <CSSIconCard /> }],
+      },
+      {
+        title: "Portfolio page",
+        direction: "front-end",
+        src: project2,
+        alt: "project",
+        description:
+          "It is my first React practice in which I have created my own portfolio in React, using SCSS and React hooks.",
+        stack: [
+          { icon: <ReactIconCard /> },
+          { icon: <SassIcon fill="#CD6799" /> },
+        ],
+      },
+    ],
+  },
 };
 
-function App() {
+const Projects = ({ cards }) => {
+  return (
+    <section className="layout__section projects">
+      <ProjectsCards cards={cards} />
+    </section>
+  );
+};
+
+const App = () => {
   const [variant, setVariant] = useState("hello");
   const [formInner, setFormInner] = useState(null);
 
@@ -147,19 +204,7 @@ function App() {
               widgets={data.widgets}
             />
             <div className="about-page__content">
-              <div className="file-tabs">
-                <div className="file-tabs__tab">
-                  <div className="file-tabs__tab-title">personal-info</div>
-                  <button className="file-tabs__tab-close">
-                    <Close
-                      className="file-tabs__tab-close-icon"
-                      width="11"
-                      height="10"
-                      fill="#607B96"
-                    />
-                  </button>
-                </div>
-              </div>
+              <Tabs />
               <div className="info__scroll">
                 <div className="info__container">
                   <div className="info__personal-info"></div>
@@ -177,7 +222,10 @@ function App() {
               variant={variant}
               widgets={data.widgets}
             />
-            <div className="project-page__content"></div>
+            <div className="project-page__content">
+              <Tabs />
+              <Projects {...data.projects} />
+            </div>
           </main>
         </>
       )}
@@ -297,6 +345,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
