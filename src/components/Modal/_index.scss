@@ -1,0 +1,46 @@
+/*Modal Component*/
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(
+    to bottom right,
+    rgba(67, 217, 173, 0.4) 35%,
+    // transparent,
+    rgba(201, 139, 223, 0.4),
+    rgba(77, 91, 206, 0.4) 65%
+  );
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
+
+  &.--open {
+    transform: scale(1);
+  }
+  &__content {
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid $color-border-main;
+    background-color: $bg-color;
+    width: 70%;
+    height: 70%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

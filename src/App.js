@@ -10,6 +10,7 @@ import Form from "./components/Form/index";
 import Aside from "./components/Aside/index";
 import Tabs from "./components/Tabs/index";
 import ProjectsCards from "./components/ProjectsCards/index";
+import Modal from "./components/Modal/index";
 
 /*Icons*/
 
@@ -179,15 +180,16 @@ const data = {
   },
 };
 
-const Projects = ({ cards }) => {
+const Projects = ({ cards, setIsModalOpen }) => {
   return (
     <section className="layout__section projects">
-      <ProjectsCards cards={cards} />
+      <ProjectsCards cards={cards} setIsModalOpen={setIsModalOpen} />
     </section>
   );
 };
 
 const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [variant, setVariant] = useState("hello");
   const [formInner, setFormInner] = useState(null);
 
@@ -226,6 +228,7 @@ const App = () => {
               <Tabs />
               <Projects {...data.projects} />
             </div>
+            <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
           </main>
         </>
       )}

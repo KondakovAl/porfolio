@@ -1,6 +1,14 @@
 import React from "react";
 
-const ProjectsCard = ({ title, direction, src, alt, description, stack }) => {
+const ProjectsCard = ({
+  title,
+  direction,
+  src,
+  alt,
+  description,
+  stack,
+  setIsModalOpen,
+}) => {
   return (
     <div className="projects__card card">
       <div className="card__header">
@@ -20,7 +28,12 @@ const ProjectsCard = ({ title, direction, src, alt, description, stack }) => {
         </div>
         <div className="card__main-container">
           <p className="card__main-description">{description}</p>
-          <button className="card__main-button form__button">
+          <button
+            className="card__main-button form__button"
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
+          >
             view-project
           </button>
         </div>
@@ -29,11 +42,16 @@ const ProjectsCard = ({ title, direction, src, alt, description, stack }) => {
   );
 };
 
-const ProjectsCards = ({ cards }) => {
+const ProjectsCards = ({ cards, setIsModalOpen }) => {
   return (
     <div className="projects__cards">
       {cards.map((card, index) => (
-        <ProjectsCard {...card} key={index} index={index} />
+        <ProjectsCard
+          {...card}
+          key={index}
+          index={index}
+          setIsModalOpen={setIsModalOpen}
+        />
       ))}
     </div>
   );
