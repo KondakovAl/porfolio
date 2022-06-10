@@ -35,6 +35,7 @@ import { ReactComponent as ReactIconCard } from "./assets/images/react-card.svg"
 /*Images*/
 import project1 from "./assets/images/project1.png";
 import project2 from "./assets/images/project2.png";
+import { FALSE } from "sass";
 
 const data = {
   links: [
@@ -189,7 +190,7 @@ const Projects = ({ cards, setIsModalOpen }) => {
 };
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [variant, setVariant] = useState("hello");
   const [formInner, setFormInner] = useState(null);
 
@@ -226,7 +227,7 @@ const App = () => {
             />
             <div className="project-page__content">
               <Tabs />
-              <Projects {...data.projects} />
+              <Projects {...data.projects} setIsModalOpen={setIsModalOpen} />
             </div>
             <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
           </main>
