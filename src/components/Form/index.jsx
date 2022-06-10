@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../Input";
 import Textarea from "../Textarea";
-import SendButton from "../SendButton";
+import Button from "../Button";
 
 const Form = ({ setFormInner }) => {
   const [formIsSubmit, setFormIsSubmit] = useState(false);
@@ -36,8 +36,8 @@ const Form = ({ setFormInner }) => {
         <p className="form-submited__text">
           Your message has been accepted. You will recieve answer really soon!
         </p>
-        <button
-          className="form-submited__button form__button"
+        <Button
+          className={"form-submited__button"}
           onClick={() => {
             setFormInner(null);
             setFormIsSubmit(false);
@@ -45,7 +45,7 @@ const Form = ({ setFormInner }) => {
           }}
         >
           send-new-message
-        </button>
+        </Button>
       </div>
     );
   }
@@ -79,7 +79,7 @@ const Form = ({ setFormInner }) => {
         errors={errors}
         errorText="Enter your message"
       />
-      <SendButton />
+      <Button className={"form__button"}>submit-message</Button>
     </form>
   );
 };

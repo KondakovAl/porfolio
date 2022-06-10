@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./assets/scss/index.scss";
 
 /*Components*/
@@ -35,7 +35,6 @@ import { ReactComponent as ReactIconCard } from "./assets/images/react-card.svg"
 /*Images*/
 import project1 from "./assets/images/project1.png";
 import project2 from "./assets/images/project2.png";
-import { FALSE } from "sass";
 
 const data = {
   links: [

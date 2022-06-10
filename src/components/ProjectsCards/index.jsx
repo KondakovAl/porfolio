@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button";
 
 const ProjectsCard = ({
   title,
@@ -28,14 +29,14 @@ const ProjectsCard = ({
         </div>
         <div className="card__main-container">
           <p className="card__main-description">{description}</p>
-          <button
-            className="card__main-button form__button"
+          <Button
+            className={"card__main-button"}
             onClick={() => {
               setIsModalOpen(true);
             }}
           >
             view-project
-          </button>
+          </Button>
         </div>
       </div>
     </div>
