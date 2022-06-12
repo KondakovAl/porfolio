@@ -84,12 +84,7 @@ const data = {
           {
             name: "HTML",
             id: "HTML",
-            pic: (
-              <HTMLIcon
-                fill="rgba(96, 123, 150, 0.4)
-            "
-              />
-            ),
+            pic: <HTMLIcon fill="rgba(96, 123, 150, 0.4)" />,
             withCheckBox: true,
           },
           {
@@ -176,20 +171,46 @@ const data = {
           { icon: <SassIcon fill="#CD6799" /> },
         ],
       },
+      {
+        title: "12312332",
+        direction: "front-end",
+        src: project1,
+        alt: "project",
+        description:
+          "This website is a project, that I did to сonsolidate my skills after learning HTML and CSS.",
+        stack: [{ icon: <HTMLIconCard /> }, { icon: <CSSIconCard /> }],
+      },
+      {
+        title: "12321321",
+        direction: "front-end",
+        src: project2,
+        alt: "project",
+        description:
+          "It is my first React practice in which I have created my own portfolio in React, using SCSS and React hooks.",
+        stack: [
+          { icon: <ReactIconCard /> },
+          { icon: <SassIcon fill="#CD6799" /> },
+        ],
+      },
     ],
   },
 };
 
-const Projects = ({ cards, setIsModalOpen }) => {
+const Projects = ({ cards, setIsModalOpen, setModalInfo }) => {
   return (
     <section className="layout__section projects">
-      <ProjectsCards cards={cards} setIsModalOpen={setIsModalOpen} />
+      <ProjectsCards
+        cards={cards}
+        setIsModalOpen={setIsModalOpen}
+        setModalInfo={setModalInfo}
+      />
     </section>
   );
 };
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalInfo, setModalInfo] = useState({});
   const [variant, setVariant] = useState("hello");
   const [formInner, setFormInner] = useState(null);
 
@@ -226,9 +247,17 @@ const App = () => {
             />
             <div className="project-page__content">
               <Tabs />
-              <Projects {...data.projects} setIsModalOpen={setIsModalOpen} />
+              <Projects
+                {...data.projects}
+                setModalInfo={setModalInfo}
+                setIsModalOpen={setIsModalOpen}
+              />
             </div>
-            <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+            <Modal
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              modalInfo={modalInfo}
+            />
           </main>
         </>
       )}

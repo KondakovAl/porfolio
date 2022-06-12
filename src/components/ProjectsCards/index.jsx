@@ -1,6 +1,49 @@
 import React from "react";
 import Button from "../Button";
 
+/*Images For Projects*/
+import project1 from "../../assets/images/project1.png";
+import project2 from "../../assets/images/project2.png";
+
+const modalData = [
+  {
+    name: "Ava App website",
+    about:
+      "In this project I used HTML + CSS without preprocessors and try to use JS just a little. Also I make some CSS animations",
+    stack: "HTML, CSS, JS",
+    date: "May, 2022",
+    vercel: "https://ava-app-two.vercel.app/",
+    src: project1,
+  },
+  {
+    name: "Portfolio page",
+    about:
+      "This is my first project, that I made using React and SCSS, I also used following libraries: react-hook-form and react-scrollbar-custom",
+    stack: "HTML, SCSS, React",
+    date: "June, 2022",
+    vercel: "https://porfolio-green.vercel.app/",
+    src: project2,
+  },
+  {
+    name: "Ava App website",
+    about:
+      "In this project I used HTML + CSS without preprocessors and try to use JS just a little. Also I make some CSS animations",
+    stack: "HTML, CSS, JS",
+    date: "May, 2022",
+    vercel: "https://ava-app-two.vercel.app/",
+    src: project1,
+  },
+  {
+    name: "Portfolio page",
+    about:
+      "This is my first project, that I made using React and SCSS, I also used following libraries: react-hook-form and react-scrollbar-custom",
+    stack: "HTML, SCSS, React",
+    date: "June, 2022",
+    vercel: "https://porfolio-green.vercel.app/",
+    src: project2,
+  },
+];
+
 const ProjectsCard = ({
   title,
   direction,
@@ -9,6 +52,8 @@ const ProjectsCard = ({
   description,
   stack,
   setIsModalOpen,
+  setModalInfo,
+  index,
 }) => {
   return (
     <div className="projects__card card">
@@ -32,6 +77,7 @@ const ProjectsCard = ({
           <Button
             className={"card__main-button"}
             onClick={() => {
+              setModalInfo(modalData[index]);
               setIsModalOpen(true);
             }}
           >
@@ -43,7 +89,7 @@ const ProjectsCard = ({
   );
 };
 
-const ProjectsCards = ({ cards, setIsModalOpen }) => {
+const ProjectsCards = ({ cards, setIsModalOpen, setModalInfo }) => {
   return (
     <div className="projects__cards">
       {cards.map((card, index) => (
@@ -52,6 +98,7 @@ const ProjectsCards = ({ cards, setIsModalOpen }) => {
           key={index}
           index={index}
           setIsModalOpen={setIsModalOpen}
+          setModalInfo={setModalInfo}
         />
       ))}
     </div>

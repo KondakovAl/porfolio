@@ -9,11 +9,12 @@
     display: flex;
     gap: 130px;
   }
-  &__intro {
-    display: flex;
-    flex-direction: column;
-    gap: 81px;
-  }
+}
+.intro {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 81px;
   &__about {
     display: flex;
     flex-direction: column;
@@ -67,6 +68,96 @@
       &:hover {
         text-decoration: underline;
       }
+    }
+  }
+}
+
+/*Game Snake*/
+
+.game {
+  display: flex;
+  border: 1px solid #0c1616;
+  border-radius: 8px;
+  box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.3) inset;
+  background: linear-gradient(
+    150.26deg,
+    rgba(23, 85, 83, 0.7) 1.7%,
+    rgba(67, 217, 173, 0.091) 81.82%
+  );
+  padding: 35px;
+  gap: 25px;
+  &__board {
+    width: 240px;
+    height: 400px;
+    border-radius: 8px;
+    background: rgba(1, 22, 39, 0.84);
+    box-shadow: 1px 5px 11px 0px rgba(2, 18, 27, 0.71) inset;
+  }
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+  }
+  &__instructions {
+    display: flex;
+    flex-direction: column;
+    background: rgba(1, 20, 35, 0.19);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  &__comment {
+    font-size: 14px;
+    line-height: 18px;
+    color: $color-light;
+    margin-bottom: 5px;
+  }
+  &__comment:nth-child(2) {
+    margin-bottom: 15px;
+  }
+  &__keys {
+    display: grid;
+    grid-template-areas:
+      ". top ."
+      "left bottom right";
+    gap: 4px;
+  }
+  &__key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #1e2d3d;
+    border-radius: 8px;
+    background: #010c15;
+    width: 49px;
+    height: 29px;
+    &_top {
+      grid-area: top;
+    }
+    &_left {
+      grid-area: left;
+    }
+    &_bottom {
+      grid-area: bottom;
+    }
+    &_right {
+      grid-area: right;
+    }
+  }
+  &__arrow {
+    color: #ffffff;
+    font-family: remixicon !important;
+    font-size: 10px;
+
+    &_top::before {
+      content: "\25B2";
+    }
+    &_left::before {
+      content: "\25C0";
+    }
+    &_bottom::before {
+      content: "\25BC";
+    }
+    &_right::before {
+      content: "\25B6";
     }
   }
 }

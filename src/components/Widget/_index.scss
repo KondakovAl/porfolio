@@ -9,10 +9,14 @@
     border-bottom: 1px solid $color-border-main;
     width: 100%;
     cursor: pointer;
-  }
-
-  &__header-text {
-    color: #fff;
+    &-text {
+      color: #fff;
+    }
+    // &-icon::before {
+    //   content: "\25B6";
+    //   color: #fff;
+    //   font-size: 11px;
+    // }
   }
 
   &.--show {
@@ -30,15 +34,34 @@
   }
 
   &__content {
+    padding: 0 20px;
     height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: opacity 0.1s ease-in;
+    transition: opacity 0.1s ease-in, height 0.2s ease-in;
   }
 
   &__header-icon {
     transition: transform 0.2s ease-in;
   }
+}
+
+.about-page {
+  .widget:first-child.--show {
+    .widget__content {
+      height: 123px;
+    }
+  }
+  //   .widget:first-child.--show {
+  //     .widget__content {
+  //       height: 123px;
+  //     }
+  //   }
+  //   .widget:first-child.--show {
+  //     .widget__content {
+  //       height: 123px;
+  //     }
+  //   }
 }
 
 .folder {
