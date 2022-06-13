@@ -11,6 +11,17 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  outline: 1px solid $color-border-main;
+}
+::-webkit-scrollbar-thumb {
+  background: #607b96;
+}
+
 a {
   text-decoration: none;
   color: inherit;

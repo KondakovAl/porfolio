@@ -13,7 +13,13 @@ import ProjectsCards from "./components/ProjectsCards/index";
 import Modal from "./components/Modal/index";
 
 /*Icons*/
+import { ReactComponent as Telegram } from "./assets/images/telegram.svg";
+import { ReactComponent as Instagram } from "./assets/images/instagram.svg";
+import { ReactComponent as Vk } from "./assets/images/vk.svg";
+import { ReactComponent as Github } from "./assets/images/github.svg";
+//*Social Icons//
 
+//*Skills Icons//
 import { ReactComponent as Folder } from "./assets/images/folder.svg";
 import { ReactComponent as Mail } from "./assets/images/mail.svg";
 import { ReactComponent as Phone } from "./assets/images/phone.svg";
@@ -26,7 +32,7 @@ import { ReactComponent as SassIcon } from "./assets/images/sass.svg";
 import { ReactComponent as ReduxIcon } from "./assets/images/redux.svg";
 import { ReactComponent as TSIcon } from "./assets/images/TS.svg";
 
-/*Cards Icons*/
+//*Cards Icons*/
 import { ReactComponent as HTMLIconCard } from "./assets/images/html-card.svg";
 import { ReactComponent as CSSIconCard } from "./assets/images/css-card.svg";
 // import { ReactComponent as SassIconCard } from "./assets/images/sass-card.svg";
@@ -42,6 +48,49 @@ const data = {
     { name: "about-me" },
     { name: "projects" },
     { name: "contact-me" },
+  ],
+
+  socials: [
+    {
+      pic: (
+        <Telegram
+          width="21"
+          height="17"
+          fill="#607B96"
+          className="social__item"
+        />
+      ),
+      href: "https://t.me/JessePaul1",
+    },
+    {
+      pic: (
+        <Instagram
+          width="21"
+          height="21"
+          fill="#607B96"
+          className="social__item"
+        />
+      ),
+      href: "https://instagram.com/kondakoval",
+    },
+    {
+      pic: (
+        <Vk width="21" height="21" fill="#607B96" className="social__item" />
+      ),
+      href: "https://vk.com/jessepaul",
+    },
+    {
+      pic: (
+        <Github
+          width="21"
+          height="21"
+          fill="#607B96"
+          className="social__item social-github__item-icon"
+        />
+      ),
+      href: "https://github.com/KondakovAl",
+      github: true,
+    },
   ],
 
   widgets: {
@@ -209,9 +258,9 @@ const Projects = ({ cards, setIsModalOpen, setModalInfo }) => {
 };
 
 const App = () => {
+  const [variant, setVariant] = useState("hello");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState({});
-  const [variant, setVariant] = useState("hello");
   const [formInner, setFormInner] = useState(null);
 
   return (
@@ -374,7 +423,7 @@ const App = () => {
           </main>
         </>
       )}
-      <Footer />
+      <Footer socials={data.socials} />
     </div>
   );
 };

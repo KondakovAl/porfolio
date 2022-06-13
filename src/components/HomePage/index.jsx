@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import React from "react";
 
-const index = () => {
+const position = "Front-end developer";
+
+const HomePage = () => {
+  const [typedPosition, setTypedPosition] = useState("");
+  useEffect(() => {
+    const nextTypedPosition = position.slice(0, typedPosition.length + 1);
+
+    if (nextTypedPosition === typedPosition) return;
+    const timeout = setTimeout(() => {
+      setTypedPosition(position.slice(0, typedPosition.length + 1));
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [typedPosition]);
+
   return (
     <main className="home-page">
       <div className="home-page__wrapper">
@@ -8,7 +22,7 @@ const index = () => {
           <div className="intro__about about">
             <span className="about__hello">Hi all. I am</span>
             <span className="about__name">Aleksandr Kondakov</span>
-            <span className="about__position">&gt; Front-end developer</span>
+            <span className="about__position">&gt; {typedPosition}</span>
           </div>
           <div className="intro__github github">
             <span className="github__comment">
@@ -52,10 +66,22 @@ const index = () => {
               </div>
             </div>
           </div>
+          <div className="game__mark game__mark_top-left">
+            <span className="game__mark-close"></span>
+          </div>
+          <div className="game__mark game__mark_top-right">
+            <span className="game__mark-close"></span>
+          </div>
+          <div className="game__mark game__mark_bottom-right">
+            <span className="game__mark-close"></span>
+          </div>
+          <div className="game__mark game__mark_bottom-left">
+            <span className="game__mark-close"></span>
+          </div>
         </section>
       </div>
     </main>
   );
 };
 
-export default index;
+export default HomePage;

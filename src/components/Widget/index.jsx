@@ -23,7 +23,7 @@ const Widget = ({ title, links }) => {
               {link.withCheckBox && (
                 <div
                   className="folder__item-checkbox item-checkbox"
-                  onClick={() => setIsCheckboxActive([...isCheckboxActive])}
+                  // onClick={() => setIsCheckboxActive([...isCheckboxActive])}
                 >
                   <input
                     type="checkbox"

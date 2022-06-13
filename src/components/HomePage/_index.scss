@@ -3,18 +3,21 @@
 .home-page {
   flex: 1 1 auto;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 2rem;
   &__wrapper {
     display: flex;
-    gap: 130px;
+    gap: 100px;
   }
 }
 .intro {
   display: flex;
+  // display: none;
   justify-content: center;
   flex-direction: column;
   gap: 81px;
+  z-index: 10;
   &__about {
     display: flex;
     flex-direction: column;
@@ -45,6 +48,11 @@
     font-size: 32px;
     line-height: 42px;
   }
+  // Blinking cursor
+  &__position::after {
+    content: "|";
+    animation: blink 1s infinite;
+  }
 }
 
 .github {
@@ -72,20 +80,38 @@
   }
 }
 
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 /*Game Snake*/
+.home-page::after {
+  content: "";
+  position: absolute;
+  background: url(../../assets/images/bg-home.svg);
+  background-repeat: no-repeat;
+  background-position: 100%;
+  background-size: contain;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
 .game {
   display: flex;
+  display: none;
   border: 1px solid #0c1616;
   border-radius: 8px;
   box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.3) inset;
-  background: linear-gradient(
-    150.26deg,
-    rgba(23, 85, 83, 0.7) 1.7%,
-    rgba(67, 217, 173, 0.091) 81.82%
-  );
+  background: linear-gradient(156deg, #175553, rgba(67, 217, 173, 0.13));
   padding: 35px;
   gap: 25px;
+  position: relative;
+  z-index: 10;
   &__board {
     width: 240px;
     height: 400px;
@@ -158,6 +184,69 @@
     }
     &_right::before {
       content: "\25B6";
+    }
+  }
+  &__mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    border: 1px solid #114944;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    margin: 10px;
+    &_top-left {
+      top: 0;
+      left: 0;
+      background: radial-gradient(
+        73.08% 73.08% at 50% 26.92%,
+        #196c6a 15.1%,
+        #114b4a 100%
+      );
+      box-shadow: 0px 1px 2px 0px rgba(26, 130, 119, 1) inset,
+        2px 2px 4px 0px rgba(13, 67, 65, 1);
+    }
+    &_top-right {
+      top: 0;
+      right: 0;
+      background: radial-gradient(
+        73.08% 73.08% at 50% 26.92%,
+        #217d7a 15.1%,
+        #114b4a 100%
+      );
+      box-shadow: 0px 1px 2px 0px rgba(31, 129, 119, 1) inset,
+        2px 2px 4px 0px rgba(13, 67, 65, 1);
+    }
+    &_bottom-right {
+      bottom: 0;
+      right: 0;
+      background: radial-gradient(
+        73.08% 73.08% at 50% 26.92%,
+        #234b7c 15.1%,
+        #122e4f 100%
+      );
+      box-shadow: 0px 1px 2px 0px rgba(44, 88, 141, 1) inset,
+        2px 2px 4px 0px rgba(18, 44, 78, 1);
+      border: 1px solid #163355;
+    }
+    &_bottom-left {
+      bottom: 0;
+      left: 0;
+      background: radial-gradient(
+        73.08% 73.08% at 50% 26.92%,
+        #164c51 15.1%,
+        #0d3a40 100%
+      );
+      box-shadow: 0px 1px 2px 0px rgba(22, 100, 92, 1) inset,
+        2px 2px 4px 0px rgba(9, 45, 50, 1);
+      color: #0a2f2e;
+    }
+    &-close::before {
+      font-size: 10px;
+      line-height: 22px;
+      color: #0a2f2e;
+      content: "\2716	";
     }
   }
 }
