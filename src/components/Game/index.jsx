@@ -1,17 +1,17 @@
-import React from "react";
+import { React, useCallback, useEffect, useState } from "react";
 
-const Food = (dot) => {
+const Food = ({ food }) => {
   const style = {
-    left: `${dot.dot[0]}%`,
-    top: `${dot.dot[1]}%`,
+    left: `${food[0]}%`,
+    top: `${food[1]}%`,
   };
   return <div className="snake__point" style={style}></div>;
 };
 
-const Snake = (snakeDots) => {
+const Snake = ({ snakeDots }) => {
   return (
     <section className="snake__section">
-      {snakeDots.snakeDots.map((dot, index) => {
+      {snakeDots.map((dot, index) => {
         const style = {
           left: `${dot[0]}%`,
           top: `${dot[1]}%`,
@@ -31,32 +31,107 @@ const getRandomCoordinates = () => {
 };
 
 const Game = () => {
-  
-  const [state, setState] = useState({
-    food: getRandomCoordinates(),
-    direction: "RIGHT",
-    snakeDots: [
-      [0, 0],
-      [2, 0],
-      [4, 0],
-      [6, 0],
-    ],
-  });
+  const [snakeDots, setSnakeDots] = useState([
+    [0, 0],
+    [2, 0],
+    [4, 0],
+    [6, 0],
+    [8, 0],
+    [10, 0],
+    [12, 0],
+    [14, 0],
+  ]);
+  const [food, setFood] = useState(getRandomCoordinates);
+  const [direction, setDirection] = useState("RIGHT");
+  const [speed, setSpeed] = useState(100);
 
-  const componentDidMount = () => {
-    document.onkeydown = onKeyDown;
+  useEffect(() => {
+    checkIfOutOfBorders();
+    setTimeout(() => moveSnake(snakeDots), speed);
+  }, [snakeDots]);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      e = e || window.event;
+      switch (e.keyCode) {
+        case 38:
+          !["DOWN", "UP"].includes(direction) && setDirection("UP");
+          break;
+        case 40:
+          !["DOWN", "UP"].includes(direction) && setDirection("DOWN");
+          break;
+        case 37:
+          !["LEFT", "RIGHT"].includes(direction) && setDirection("LEFT");
+          break;
+        case 39:
+          !["LEFT", "RIGHT"].includes(direction) && setDirection("RIGHT");
+          break;
+        default:
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [direction, setDirection]);
+
+  const moveSnake = useCallback(
+    (snakeDots, eaten) => {
+      let dots = [...snakeDots];
+      let head = dots[dots.length - 1];
+
+      switch (direction) {
+        case "RIGHT":
+          head = [head[0] + 2, head[1]];
+          break;
+        case "LEFT":
+          head = [head[0] - 2, head[1]];
+          break;
+        case "DOWN":
+          head = [head[0], head[1] + 2];
+          break;
+        case "UP":
+          head = [head[0], head[1] - 2];
+          break;
+
+        default:
+          break;
+      }
+      if (direction) {
+        dots.push(head);
+
+        eaten ? setFood(getRandomCoordinates()) : dots.shift();
+
+        setSnakeDots([...dots]);
+      }
+    },
+    [direction]
+  );
+
+  const checkIfOutOfBorders = () => {
+    let dots = [...snakeDots];
+    let head = dots[dots.length - 1];
+    if (head[0] >= 100 || head[1] >= 100 || head[0] < 0 || head[1] < 0) {
+      onGameOver();
+    }
   };
 
-  const onKeyDown = (e) => {
-    e = e || window.event;
-    switch 
+  const onGameOver = () => {
+    // alert(`Game Over. Lenght of the snake is ${snakeDots.length - 1}`);
   };
 
   return (
     <section className="game__layout game">
       <div className="snake__board">
-        <Snake snakeDots={state.snakeDots} />
-        <Food dot={state.food} />
+        <Snake snakeDots={snakeDots} />
+        <Food food={food} />
+        <section className="snake__section_game-over game-over">
+          <span className="game-over__text">game over!</span>
+          <span className="game-over__button">start-again</span>
+        </section>
       </div>
       <div className="game__sidebar">
         <div className="game__instructions">
