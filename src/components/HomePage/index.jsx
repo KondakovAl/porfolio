@@ -4,7 +4,7 @@ import Game from "../Game/index";
 
 const words = ["HTML programmer", "CSS creator", "Frontend developer"];
 
-const Intro = () => {
+const Intro = ({ introFlag, setIntroFlag }) => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
@@ -31,10 +31,14 @@ const Intro = () => {
 
     const timeout = setTimeout(() => {
       setSubIndex((prev) => prev + (reverse ? -1 : 1));
-    }, Math.max(reverse ? 75 : subIndex === words[index].length ? 1000 : 150, parseInt(Math.random() * 350)));
+    }, Math.max(reverse ? 75 : subIndex === words[index].length ? 500 : 150, parseInt(Math.random() * 350)));
 
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse]);
+
+  useEffect(() => {
+    return () => setIntroFlag(false);
+  }, []);
 
   return (
     <section className="home-page__intro intro">
@@ -42,7 +46,10 @@ const Intro = () => {
         <span className="about__hello">Hi all. I am</span>
         <span className="about__name">Aleksandr Kondakov</span>
         <span className="about__position">
-          &gt;{` ${words[index].substring(0, subIndex)}`}
+          &gt;
+          {introFlag
+            ? ` ${words[index].substring(0, subIndex)}`
+            : "Frontend Developer"}
         </span>
       </div>
       <div className="intro__github github">
@@ -65,11 +72,11 @@ const Intro = () => {
   );
 };
 
-const HomePage = () => {
+const HomePage = ({ introFlag, setIntroFlag }) => {
   return (
     <main className="home-page">
       <div className="home-page__wrapper">
-        <Intro />
+        <Intro introFlag={introFlag} setIntroFlag={setIntroFlag} />
         <Game />
       </div>
     </main>

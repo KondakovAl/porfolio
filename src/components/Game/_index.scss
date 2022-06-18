@@ -210,8 +210,8 @@
   }
   &__dot {
     position: absolute;
-    width: 2%;
-    height: 2%;
+    width: 8px;
+    height: 8px;
     background: #43d9ad;
     opacity: 1;
     z-index: 12;
@@ -250,6 +250,9 @@
         rgba(67, 217, 173, 0.8)
       );
     }
+    // &:nth-last-child(1) {
+    //   border-radius: 60px 60px 0 0;
+    // }
   }
   &__point {
     background: #00ffb3;
@@ -283,38 +286,64 @@
   }
 }
 
-.game-over {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 265px 0 0;
-  z-index: 15;
-  user-select: none;
-
-  gap: 25px;
-  &__text {
-    display: flex;
-    color: #43d9ad;
-    font-size: 24px;
-    line-height: 24px;
-    text-transform: uppercase;
-    background: rgba(1, 22, 39, 0.84);
-    box-shadow: 1px 5px 11px 0px rgba(2, 18, 27, 0.71) inset;
-    height: 48px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+.game {
+  &-start {
+    &__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 112px;
+      height: 38px;
+      margin: 300px auto 0;
+      /*Change z-index*/
+      z-index: 30;
+      background: #fea55f;
+      border-radius: 8px;
+      color: #01080e;
+      cursor: pointer;
+      transition: color 0.3s ease-in;
+      &:hover {
+        color: $color-light;
+      }
+    }
   }
-  &__button {
+  &-over {
     display: flex;
-    justify-content: center;
-    cursor: pointer;
-    transition: color 0.3s ease-in;
-    &:hover {
-      color: $color-light;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 265px 0 0;
+    z-index: 15;
+    user-select: none;
+
+    gap: 25px;
+    &__text {
+      display: flex;
+      color: #43d9ad;
+      font-size: 24px;
+      line-height: 24px;
+      text-transform: uppercase;
+      background: rgba(1, 22, 39, 0.84);
+      box-shadow: 1px 5px 11px 0px rgba(2, 18, 27, 0.71) inset;
+      height: 48px;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+    &__button {
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+      transition: color 0.3s ease-in;
+      &:hover {
+        color: $color-light;
+      }
     }
   }
 }

@@ -262,11 +262,14 @@ const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState({});
   const [formInner, setFormInner] = useState(null);
+  const [introFlag, setIntroFlag] = useState(true);
 
   return (
     <div className="layout">
       <Header variant={variant} setVariant={setVariant} links={data.links} />
-      {variant === "hello" && <HomePage />}
+      {variant === "hello" && (
+        <HomePage introFlag={introFlag} setIntroFlag={setIntroFlag} />
+      )}
       {variant === "about-me" && (
         <>
           <main className="about-page">
