@@ -5,8 +5,9 @@ import { ReactComponent as WidgetIcon } from "../../assets/images/widget-icon.sv
 //*Folders Icons*/
 import { ReactComponent as Folder } from "../../assets/images/folder.svg";
 
-const Widget = ({ title, links, setActiveInfo, activeInfo, setActiveTab }) => {
+const Widget = ({ title, links, setActiveInfo, setActiveTab }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isActiveInfo, setIsActiveInfo] = useState(false);
   // const [isCheckboxActive, setIsCheckboxActive] = useState([]);
 
   return (
@@ -28,10 +29,11 @@ const Widget = ({ title, links, setActiveInfo, activeInfo, setActiveTab }) => {
         <ul className="folder">
           {links.map((link, index) => (
             <li
-              className={`folder__item ${activeInfo ? "--active" : " "}`}
+              className={`folder__item ${!isActiveInfo ? "--active" : " "}`}
               key={index}
               onClick={() => {
                 setActiveInfo(link.name);
+                setIsActiveInfo(!isActiveInfo);
               }}
             >
               {link.withCheckBox && (
