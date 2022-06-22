@@ -31,7 +31,7 @@ const Intro = ({ introFlag, setIntroFlag }) => {
 
     const timeout = setTimeout(() => {
       setSubIndex((prev) => prev + (reverse ? -1 : 1));
-    }, Math.max(reverse ? 75 : subIndex === words[index].length ? 500 : 150, parseInt(Math.random() * 350)));
+    }, Math.max(reverse ? 75 : subIndex === words[index].length ? 500 : 100, parseInt(Math.random() * 100)));
 
     return () => clearTimeout(timeout);
   }, [subIndex, index, reverse]);

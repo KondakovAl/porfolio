@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./assets/scss/index.scss";
 
 /*Components*/
@@ -24,13 +24,17 @@ import { ReactComponent as Folder } from "./assets/images/folder.svg";
 import { ReactComponent as Mail } from "./assets/images/mail.svg";
 import { ReactComponent as Phone } from "./assets/images/phone.svg";
 import { ReactComponent as Development } from "./assets/images/development.svg";
-import { ReactComponent as Skills } from "./assets/images/skills.svg";
+import { ReactComponent as SkillsIcon } from "./assets/images/skills.svg";
+
 import { ReactComponent as ReactIcon } from "./assets/images/react.svg";
 import { ReactComponent as HTMLIcon } from "./assets/images/html.svg";
 import { ReactComponent as CSSIcon } from "./assets/images/css.svg";
+import { ReactComponent as JSIcon } from "./assets/images/js.svg";
 import { ReactComponent as SassIcon } from "./assets/images/sass.svg";
 import { ReactComponent as ReduxIcon } from "./assets/images/redux.svg";
 import { ReactComponent as TSIcon } from "./assets/images/TS.svg";
+import { ReactComponent as GitIcon } from "./assets/images/git.svg";
+import { ReactComponent as FigmaIcon } from "./assets/images/figma.svg";
 
 //*Cards Icons*/
 import { ReactComponent as HTMLIconCard } from "./assets/images/html-card.svg";
@@ -107,7 +111,7 @@ const data = {
         title: "professional-info",
         links: [
           { name: "development", pic: <Development fill="cornflowerblue" /> },
-          { name: "skills", pic: <Skills fill="#C98BDF" /> },
+          { name: "skills", pic: <SkillsIcon fill="#C98BDF" /> },
         ],
       },
       {
@@ -243,6 +247,56 @@ const data = {
       },
     ],
   },
+
+  info: {
+    skills: [
+      {
+        icon: <HTMLIcon fill="rgba(96, 123, 150, 0.4)" />,
+        name: "HTML",
+        progress: "90",
+      },
+      {
+        icon: <CSSIcon fill="rgba(96, 123, 150, 0.4)" />,
+        name: "CSS",
+        progress: "80",
+      },
+      {
+        icon: <JSIcon fill="rgba(96, 123, 150, 0.4)" />,
+        name: "JS",
+        progress: "50",
+      },
+      {
+        icon: <SassIcon fill="rgba(96, 123, 150, 0.4)" />,
+        name: "Sass",
+        progress: "60",
+      },
+      {
+        icon: <ReactIcon fill="rgba(96, 123, 150, 0.4)" />,
+        name: "React",
+        progress: "20",
+      },
+      {
+        icon: <ReduxIcon fill="rgba(96, 123, 150, 0.4)" />,
+        name: "Redux",
+        progress: "5",
+      },
+      {
+        icon: <TSIcon fill="rgba(96, 123, 150, 0.4)" />,
+        name: "TS",
+        progress: "5",
+      },
+      {
+        icon: <GitIcon fill="rgba(96, 123, 150, 0.4)" />,
+        name: "Git",
+        progress: "30",
+      },
+      {
+        icon: <FigmaIcon fill="rgba(96, 123, 150, 0.4)" />,
+        name: "Figma",
+        progress: "95",
+      },
+    ],
+  },
 };
 
 const Projects = ({ cards, setIsModalOpen, setModalInfo }) => {
@@ -257,12 +311,56 @@ const Projects = ({ cards, setIsModalOpen, setModalInfo }) => {
   );
 };
 
+const Skills = ({ skills }) => {
+  const [style, setStyle] = useState({});
+
+  const getWidth = (progress) => {
+    setTimeout(() => {
+      const changeStyle = { opacity: 1, width: `${progress}%` };
+      setStyle(changeStyle);
+    }, 1000);
+    return style;
+  };
+
+  console.log(getWidth());
+
+  return (
+    <div className="skills">
+      {skills.map((skill, index) => (
+        <div className="skills__content" key={index}>
+          <div className="skills__icon">{skill.icon}</div>
+          <div className="skills__text">{skill.name}</div>
+          <div className="skills__progress">
+            <div
+              className="skills__progress-done"
+              style={getWidth(skill.progress)}
+            >
+              {skill.progress}%
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const App = () => {
   const [variant, setVariant] = useState("hello");
+  /*Change Main Info+Tabs*/
+  const [activeInfo, setActiveInfo] = useState("skills");
+  const [activeTab, setActiveTab] = useState("personal-info");
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState({});
+
   const [formInner, setFormInner] = useState(null);
+
   const [introFlag, setIntroFlag] = useState(true);
+
+  useEffect(() => {
+    console.log(activeInfo);
+    console.log(activeTab);
+  }, [activeInfo, activeTab]);
 
   return (
     <div className="layout">
@@ -277,15 +375,27 @@ const App = () => {
               className={"about-page"}
               variant={variant}
               widgets={data.widgets}
+              setActiveInfo={setActiveInfo}
+              activeInfo={activeInfo}
+              setActiveTab={setActiveTab}
             />
             <div className="about-page__content">
-              <Tabs />
+              <Tabs activeTab={activeTab} />
               <div className="info__scroll">
                 <div className="info__container">
-                  <div className="info__personal-info"></div>
+                  <section
+                    className={
+                      activeInfo
+                        ? `info__content info__${activeInfo}`
+                        : `info__content`
+                    }
+                  >
+                    {activeInfo === "skills" && <Skills {...data.info} />}
+                  </section>
                 </div>
               </div>
             </div>
+            <div className="about-page__later">is under development</div>
           </main>
         </>
       )}

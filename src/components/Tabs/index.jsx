@@ -1,11 +1,11 @@
 import React from "react";
 import { ReactComponent as Close } from "../../assets/images/close.svg";
 
-const Tabs = () => {
+const Tabs = ({ activeTab }) => {
   return (
     <div className="file-tabs">
       <div className="file-tabs__tab">
-        <div className="file-tabs__tab-title">personal-info</div>
+        <div className="file-tabs__tab-title">{activeTab}</div>
         <button className="file-tabs__tab-close">
           <Close
             className="file-tabs__tab-close-icon"

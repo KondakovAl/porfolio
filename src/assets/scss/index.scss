@@ -38,7 +38,10 @@ ol {
 }
 
 #root {
-  height: 100vh;
+  display: flex;
+  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
   padding: 1.5rem;
 }
 
@@ -60,12 +63,17 @@ body {
   color: $primary-color;
   background: #010c15;
   overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 .layout {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  width: 100vw;
+  overflow: hidden;
+  // flex-grow: 1;
   background: $bg-color;
   border: 1px solid $color-border-main;
   border-radius: 8px;
@@ -82,6 +90,15 @@ body {
     flex-direction: column;
     border-right: 1px solid $color-border-main;
   }
+  &__later {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: $color-light;
+  }
 }
 
 .info {
@@ -93,12 +110,72 @@ body {
     flex-direction: column;
     text-align: justify;
     flex-grow: 1;
-    padding: 2rem;
+    padding: 1.5rem 2rem;
     height: 100%;
     overflow-y: auto;
   }
-  &__personal-info {
+  &__content {
     height: 100%;
+  }
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 5px;
+
+    &:hover svg,
+    &:hover .skills__text {
+      fill: $color-light;
+      color: $color-light;
+    }
+  }
+  &__icon {
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__icon svg {
+    transition: 0.3s ease-in;
+  }
+  &__text {
+    font-size: 18px;
+    cursor: default;
+    transition: 0.3s ease-in;
+  }
+  &__progress {
+    width: 100%;
+    outline: 1px solid $color-border-main;
+    height: 20px;
+    border-radius: 8px;
+    position: relative;
+
+    &-done {
+      height: 100%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(67, 217, 173, 0.4) 25%,
+        // transparent,
+        rgba(201, 139, 223, 0.4),
+        rgba(77, 91, 206, 0.4) 75%
+      );
+      box-shadow: 0px 3px 3px -5px rgba(67, 217, 173, 0.4),
+        0px 2px 5px rgba(201, 139, 223, 0.4);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-light;
+      width: 0;
+      opacity: 0;
+      transition: 0.5s ease-in;
+    }
   }
 }
 
