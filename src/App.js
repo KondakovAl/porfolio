@@ -136,37 +136,33 @@ const data = {
         links: [
           {
             name: "HTML",
-            id: "HTML",
             pic: <HTMLIcon fill="rgba(96, 123, 150, 0.4)" />,
             withCheckBox: true,
           },
           {
             name: "CSS",
-            id: "CSS",
             pic: <CSSIcon fill="rgba(96, 123, 150, 0.4)" />,
             withCheckBox: true,
           },
           {
             name: "Sass",
-            id: "Sass",
             pic: <SassIcon fill="rgba(96, 123, 150, 0.4)" />,
             withCheckBox: true,
           },
           {
             name: "React",
-            id: "React",
+
             pic: <ReactIcon fill="rgba(96, 123, 150, 0.4)" />,
             withCheckBox: true,
           },
           {
             name: "TS",
-            id: "TS",
             pic: <TSIcon fill="rgba(96, 123, 150, 0.4)" />,
             withCheckBox: true,
           },
           {
             name: "Redux",
-            id: "Redux",
+
             pic: <ReduxIcon fill="rgba(96, 123, 150, 0.4)" />,
             withCheckBox: true,
           },
@@ -311,29 +307,19 @@ const Projects = ({ cards, setIsModalOpen, setModalInfo }) => {
   );
 };
 
-const Skills = ({ skills }) => {
-  const [style, setStyle] = useState({});
-
-  const getWidth = (progress) => {
-    setTimeout(() => {
-      const changeStyle = { opacity: 1, width: `${progress}%` };
-      setStyle(changeStyle);
-    }, 1000);
-    return style;
-  };
-
-  console.log(getWidth());
-
+const Skills = ({ skills, index }) => {
   return (
     <div className="skills">
-      {skills.map((skill, index) => (
+      {skills.map((skill) => (
         <div className="skills__content" key={index}>
           <div className="skills__icon">{skill.icon}</div>
           <div className="skills__text">{skill.name}</div>
           <div className="skills__progress">
             <div
               className="skills__progress-done"
-              style={getWidth(skill.progress)}
+              style={{
+                maxWidth: `${skill.progress}%`,
+              }}
             >
               {skill.progress}%
             </div>
@@ -376,11 +362,10 @@ const App = () => {
               variant={variant}
               widgets={data.widgets}
               setActiveInfo={setActiveInfo}
-              activeInfo={activeInfo}
               setActiveTab={setActiveTab}
             />
             <div className="about-page__content">
-              <Tabs activeTab={activeTab} />
+              <Tabs activeTab={activeTab} activeInfo={activeInfo} />
               <div className="info__scroll">
                 <div className="info__container">
                   <section

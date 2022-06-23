@@ -6,7 +6,7 @@ const Aside = ({
   widgets,
   className,
   setActiveInfo,
-  activeInfo,
+
   setActiveTab,
 }) => {
   return (
@@ -18,7 +18,6 @@ const Aside = ({
             title={widget.title}
             links={widget.links}
             setActiveInfo={setActiveInfo}
-            activeInfo={activeInfo}
             setActiveTab={setActiveTab}
           />
         ))}

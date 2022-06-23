@@ -4,7 +4,8 @@
   padding: 2rem;
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 100vh;
+  /*+2px its extra px to container */
+  height: calc(100vh - (1.5rem * 2 + (58px + 2px) + 42px + 52px));
   display: flex;
   align-items: baseline;
   &__cards {
