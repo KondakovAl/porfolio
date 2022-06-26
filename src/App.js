@@ -220,27 +220,6 @@ const data = {
           { icon: <SassIcon fill="#CD6799" /> },
         ],
       },
-      {
-        title: "12312332",
-        direction: "front-end",
-        src: project1,
-        alt: "project",
-        description:
-          "This website is a project, that I did to сonsolidate my skills after learning HTML and CSS.",
-        stack: [{ icon: <HTMLIconCard /> }, { icon: <CSSIconCard /> }],
-      },
-      {
-        title: "12321321",
-        direction: "front-end",
-        src: project2,
-        alt: "project",
-        description:
-          "It is my first React practice in which I have created my own portfolio in React, using SCSS and React hooks.",
-        stack: [
-          { icon: <ReactIconCard /> },
-          { icon: <SassIcon fill="#CD6799" /> },
-        ],
-      },
     ],
   },
 
@@ -331,22 +310,22 @@ const Skills = ({ skills, index }) => {
 };
 
 const App = () => {
+  /*Main Navigation*/
   const [variant, setVariant] = useState("hello");
   /*Change Main Info+Tabs*/
   const [activeInfo, setActiveInfo] = useState("skills");
   const [activeTab, setActiveTab] = useState("personal-info");
+  /*CheckBoxes Filtration*/
+  const [stateWithCheckbox, setStateWithCheckbox] = useState([]);
+  const [checkbox, setCheckbox] = useState([]);
 
+  /*Modals*/
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState({});
-
+  /*Form*/
   const [formInner, setFormInner] = useState(null);
-
+  /*Flag for Typping Effect*/
   const [introFlag, setIntroFlag] = useState(true);
-
-  useEffect(() => {
-    console.log(activeInfo);
-    console.log(activeTab);
-  }, [activeInfo, activeTab]);
 
   return (
     <div className="layout">
@@ -361,8 +340,13 @@ const App = () => {
               className={"about-page"}
               variant={variant}
               widgets={data.widgets}
+              activeInfo={activeInfo}
               setActiveInfo={setActiveInfo}
               setActiveTab={setActiveTab}
+              stateWithCheckbox={stateWithCheckbox}
+              setStateWithCheckbox={setStateWithCheckbox}
+              checkbox={checkbox}
+              setCheckbox={setCheckbox}
             />
             <div className="about-page__content">
               <Tabs activeTab={activeTab} activeInfo={activeInfo} />

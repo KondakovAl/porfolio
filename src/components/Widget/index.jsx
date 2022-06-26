@@ -1,25 +1,48 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 
 /*Widget Icons*/
 import { ReactComponent as WidgetIcon } from "../../assets/images/widget-icon.svg";
 
-const Folder = ({ setActiveInfo, link }) => {
-  const [isActiveInfo, setIsActiveInfo] = useState(false);
-
+const Folder = ({
+  activeInfo,
+  setActiveInfo,
+  link,
+  stateWithCheckbox,
+  setStateWithCheckbox,
+  checkbox,
+  setCheckbox,
+}) => {
   return (
     <li
-      className={`folder__item ${isActiveInfo ? "--active" : " "}`}
       onClick={() => {
-        setActiveInfo(link.name);
-        setIsActiveInfo(!isActiveInfo);
+        !link.linkType && setActiveInfo(link.name);
       }}
+      className={`folder__item ${
+        activeInfo === `${link.name}` ? "--active" : " "
+      }`}
     >
       {link.withCheckBox && (
         <label className="folder__checkbox checkbox">
           <input type="checkbox" className="checkbox__field" />
           <div className="checkbox__inner">
             <div className="checkbox__inner-container">{link.pic}</div>
-            <span className="checkbox__inner-text">{link.name}</span>
+            <span
+              className="checkbox__inner-text"
+              onClick={() => {
+                let checkboxes = [...checkbox];
+                if (!checkboxes.includes(link.name)) {
+                  checkboxes.push(link.name);
+                } else {
+                  let indexDelete = checkboxes.indexOf(link.name);
+                  if (indexDelete !== -1) {
+                    checkboxes.splice(indexDelete, 1);
+                  }
+                }
+                setStateWithCheckbox(checkboxes);
+              }}
+            >
+              {link.name}
+            </span>
           </div>
         </label>
       )}
@@ -48,7 +71,17 @@ const Folder = ({ setActiveInfo, link }) => {
   );
 };
 
-const Widget = ({ title, links, setActiveInfo, setActiveTab }) => {
+const Widget = ({
+  title,
+  links,
+  activeInfo,
+  setActiveInfo,
+  setActiveTab,
+  stateWithCheckbox,
+  setStateWithCheckbox,
+  checkbox,
+  setCheckbox,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -71,7 +104,16 @@ const Widget = ({ title, links, setActiveInfo, setActiveTab }) => {
       >
         <ul className="folder">
           {links.map((link, index) => (
-            <Folder key={index} link={link} setActiveInfo={setActiveInfo} />
+            <Folder
+              key={index}
+              link={link}
+              activeInfo={activeInfo}
+              setActiveInfo={setActiveInfo}
+              stateWithCheckbox={stateWithCheckbox}
+              setStateWithCheckbox={setStateWithCheckbox}
+              checkbox={checkbox}
+              setCheckbox={setCheckbox}
+            />
           ))}
         </ul>
       </div>
