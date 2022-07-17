@@ -9,13 +9,25 @@ const Folder = ({
   link,
   stateWithCheckbox,
   setStateWithCheckbox,
-  checkbox,
-  setCheckbox,
 }) => {
+  /*ChooseCheckBox*/
+  const toggleChosenElements = (el) => {
+    const currentEl = el;
+    const newChosenElements = [...stateWithCheckbox];
+    const isIncludes = newChosenElements.includes(currentEl);
+    if (isIncludes) {
+      const elIndex = newChosenElements.indexOf(currentEl);
+      newChosenElements.splice(elIndex, 1);
+    } else {
+      newChosenElements.push(currentEl);
+    }
+    setStateWithCheckbox(newChosenElements);
+  };
+
   return (
     <li
       onClick={() => {
-        !link.linkType && setActiveInfo(link.name);
+        activeInfo && !link.linkType && setActiveInfo(link.name);
       }}
       className={`folder__item ${
         activeInfo === `${link.name}` ? "--active" : " "
@@ -24,25 +36,14 @@ const Folder = ({
       {link.withCheckBox && (
         <label className="folder__checkbox checkbox">
           <input type="checkbox" className="checkbox__field" />
-          <div className="checkbox__inner">
+          <div
+            className="checkbox__inner"
+            onClick={() => {
+              toggleChosenElements(link.name);
+            }}
+          >
             <div className="checkbox__inner-container">{link.pic}</div>
-            <span
-              className="checkbox__inner-text"
-              onClick={() => {
-                let checkboxes = [...checkbox];
-                if (!checkboxes.includes(link.name)) {
-                  checkboxes.push(link.name);
-                } else {
-                  let indexDelete = checkboxes.indexOf(link.name);
-                  if (indexDelete !== -1) {
-                    checkboxes.splice(indexDelete, 1);
-                  }
-                }
-                setStateWithCheckbox(checkboxes);
-              }}
-            >
-              {link.name}
-            </span>
+            <span className="checkbox__inner-text">{link.name}</span>
           </div>
         </label>
       )}
@@ -79,8 +80,6 @@ const Widget = ({
   setActiveTab,
   stateWithCheckbox,
   setStateWithCheckbox,
-  checkbox,
-  setCheckbox,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -99,7 +98,7 @@ const Widget = ({
       <div
         className="widget__content"
         onClick={() => {
-          title !== "contacts" && setActiveTab(title);
+          activeInfo && title !== "contacts" && setActiveTab(title);
         }}
       >
         <ul className="folder">
@@ -111,8 +110,6 @@ const Widget = ({
               setActiveInfo={setActiveInfo}
               stateWithCheckbox={stateWithCheckbox}
               setStateWithCheckbox={setStateWithCheckbox}
-              checkbox={checkbox}
-              setCheckbox={setCheckbox}
             />
           ))}
         </ul>

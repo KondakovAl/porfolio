@@ -10,11 +10,7 @@ const Aside = ({
   setActiveTab,
   stateWithCheckbox,
   setStateWithCheckbox,
-  setCheckbox,
-  checkbox,
 }) => {
-  console.log(checkbox);
-
   return (
     <aside className={`${className}__aside aside`}>
       <div className="aside__content">
@@ -28,8 +24,6 @@ const Aside = ({
             setActiveTab={setActiveTab}
             stateWithCheckbox={stateWithCheckbox}
             setStateWithCheckbox={setStateWithCheckbox}
-            checkbox={checkbox}
-            setCheckbox={setCheckbox}
           />
         ))}
       </div>

@@ -10,7 +10,14 @@ const index = ({ socials }) => {
         <span className="social__text">find me in:</span>
         {socials.map((social, index) => (
           <a href={social.href} className="social__item-link" key={index}>
-            <>{social.pic}</>
+            {!social.prompt ? (
+              <>{social.pic}</>
+            ) : (
+              <>
+                {social.pic}
+                <div className="social__item-prompt">{social.prompt}</div>
+              </>
+            )}
           </a>
         ))}
       </div>

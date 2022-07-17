@@ -65,6 +65,7 @@ const data = {
         />
       ),
       href: "https://t.me/JessePaul1",
+      // prompt: "",
     },
     {
       pic: (
@@ -76,12 +77,14 @@ const data = {
         />
       ),
       href: "https://instagram.com/kondakoval",
+      prompt: "*Prohibited in Russia",
     },
     {
       pic: (
         <Vk width="21" height="21" fill="#607B96" className="social__item" />
       ),
       href: "https://vk.com/jessepaul",
+      // prompt: "",
     },
     {
       pic: (
@@ -93,7 +96,7 @@ const data = {
         />
       ),
       href: "https://github.com/KondakovAl",
-      github: true,
+      // prompt: "",
     },
   ],
 
@@ -206,7 +209,8 @@ const data = {
         alt: "project",
         description:
           "This website is a project, that I did to сonsolidate my skills after learning HTML and CSS.",
-        stack: [{ icon: <HTMLIconCard /> }, { icon: <CSSIconCard /> }],
+        stack: ["HTML", "CSS"],
+        icons: [{ icon: <HTMLIconCard /> }, { icon: <CSSIconCard /> }],
       },
       {
         title: "Portfolio page",
@@ -215,7 +219,8 @@ const data = {
         alt: "project",
         description:
           "It is my first React practice in which I have created my own portfolio in React, using SCSS and React hooks.",
-        stack: [
+        stack: ["React", "Sass"],
+        icons: [
           { icon: <ReactIconCard /> },
           { icon: <SassIcon fill="#CD6799" /> },
         ],
@@ -274,10 +279,11 @@ const data = {
   },
 };
 
-const Projects = ({ cards, setIsModalOpen, setModalInfo }) => {
+const Projects = ({ cards, setIsModalOpen, setModalInfo, filtredCards }) => {
   return (
     <section className="layout__section projects">
       <ProjectsCards
+        filtredCards={filtredCards}
         cards={cards}
         setIsModalOpen={setIsModalOpen}
         setModalInfo={setModalInfo}
@@ -286,10 +292,10 @@ const Projects = ({ cards, setIsModalOpen, setModalInfo }) => {
   );
 };
 
-const Skills = ({ skills, index }) => {
+const Skills = ({ skills }) => {
   return (
     <div className="skills">
-      {skills.map((skill) => (
+      {skills.map((skill, index) => (
         <div className="skills__content" key={index}>
           <div className="skills__icon">{skill.icon}</div>
           <div className="skills__text">{skill.name}</div>
@@ -309,6 +315,123 @@ const Skills = ({ skills, index }) => {
   );
 };
 
+const Represent = ({ formInner }) => {
+  const getTime = () => {
+    let date = new Date();
+
+    let hours = date.getHours();
+    hours = hours < 10 ? `0${hours}` : hours;
+
+    let minutes = date.getMinutes();
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+
+    let seconds = date.getSeconds();
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+
+    return { hours, minutes, seconds };
+  };
+
+  const [timeNow, setTimeNow] = useState(getTime());
+
+  useEffect(() => {
+    setInterval(() => {
+      setTimeNow(getTime());
+    }, 1000);
+  }, []);
+
+  return (
+    <div className="represent__lines">
+      <div className="line">
+        <div className="line__number">1</div>
+        <code className="line__text">
+          <span className="line__text_pink">const </span>
+          <span className="line__text_blue">
+            button <span className="line__text_pink"> = </span>
+            document
+          </span>
+          .<span className="line__text_blue">querySelector</span>
+          &#40;<span className="line__text_orange">'#sendBtn'</span>
+          &#41;;
+        </code>
+      </div>
+      <div className="line">
+        <div className="line__number">2</div>
+        <code className="line__text"></code>
+      </div>
+      <div className="line">
+        <div className="line__number">3</div>
+        <code className="line__text">
+          <span className="line__text_pink">const </span>
+          <span className="line__text_blue">message </span>
+          <span className="line__text_pink"> = </span>
+          &#123;
+        </code>
+      </div>
+      <div className="line">
+        <div className="line__number">4</div>
+        <code className="line__text">
+          <span className="line__text_blue">name:</span>
+          <span className="line__text_orange">"{formInner?.name}"</span>,
+        </code>
+      </div>
+      <div className="line">
+        <div className="line__number">5</div>
+        <code className="line__text">
+          <span className="line__text_blue">email:</span>
+          <span className="line__text_orange">"{formInner?.email}"</span>,
+        </code>
+      </div>
+      <div className="line">
+        <div className="line__number">6</div>
+        <code className="line__text">
+          <span className="line__text_blue">message:</span>
+          <span className="line__text_orange">"{formInner?.message}"</span>,
+        </code>
+      </div>
+      <div className="line">
+        <div className="line__number">7</div>
+        <code className="line__text">
+          <span className="line__text_blue">date:</span>
+          <time className="line__text_orange">
+            "{`${timeNow.hours}:${timeNow.minutes}:${timeNow.seconds} `}
+            {new Date().toDateString()}"
+          </time>
+          ,
+        </code>
+      </div>
+      <div className="line">
+        <div className="line__number">8</div>
+        <code className="line__text">&#125;</code>
+      </div>
+      <div className="line">
+        <div className="line__number">9</div>
+        <code className="line__text"></code>
+      </div>
+      <div className="line">
+        <div className="line__number">10</div>
+        <code className="line__text">
+          <span className="line__text_blue">button</span>.
+          <span className="line__text_blue">addEventListener</span>
+          &#40;<span className="line__text_orange">'click'</span>, &#40; &#41;{" "}
+          <span className="line__text_pink">=&gt;</span>
+        </code>
+      </div>
+      <div className="line">
+        <div className="line__number">11</div>
+        <code className="line__text">
+          <span className="line__text_blue">form</span>.
+          <span className="line__text_blue">send</span>&#40;
+          <span className="line__text_blue">message</span>&#41;;
+        </code>
+      </div>
+      <div className="line">
+        <div className="line__number">12</div>
+        <code className="line__text">&#125;&#41;</code>
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   /*Main Navigation*/
   const [variant, setVariant] = useState("hello");
@@ -317,7 +440,21 @@ const App = () => {
   const [activeTab, setActiveTab] = useState("personal-info");
   /*CheckBoxes Filtration*/
   const [stateWithCheckbox, setStateWithCheckbox] = useState([]);
-  const [checkbox, setCheckbox] = useState([]);
+
+  const [filtredCards, setFiltredCards] = useState([]);
+
+  // useEffect(() => {
+  //   setFiltredCards(
+  //     data.projects.cards.filter((card) => {
+  //       if (
+  //         card.stack.some((stackItem) => stateWithCheckbox.includes(stackItem))
+  //       ) {
+  //         return card;
+  //       }
+  //       return null;
+  //     })
+  //   );
+  // }, [stateWithCheckbox]);
 
   /*Modals*/
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -343,13 +480,13 @@ const App = () => {
               activeInfo={activeInfo}
               setActiveInfo={setActiveInfo}
               setActiveTab={setActiveTab}
-              stateWithCheckbox={stateWithCheckbox}
-              setStateWithCheckbox={setStateWithCheckbox}
-              checkbox={checkbox}
-              setCheckbox={setCheckbox}
             />
             <div className="about-page__content">
-              <Tabs activeTab={activeTab} activeInfo={activeInfo} />
+              <Tabs
+                variant={variant}
+                activeTab={activeTab}
+                activeInfo={activeInfo}
+              />
               <div className="info__scroll">
                 <div className="info__container">
                   <section
@@ -364,7 +501,7 @@ const App = () => {
                 </div>
               </div>
             </div>
-            <div className="about-page__later">is under development</div>
+            {/* <div className="about-page__later">is under development</div> */}
           </main>
         </>
       )}
@@ -375,11 +512,14 @@ const App = () => {
               className={"project-page"}
               variant={variant}
               widgets={data.widgets}
+              stateWithCheckbox={stateWithCheckbox}
+              setStateWithCheckbox={setStateWithCheckbox}
             />
             <div className="project-page__content">
-              <Tabs />
+              <Tabs variant={variant} stateWithCheckbox={stateWithCheckbox} />
               <Projects
                 {...data.projects}
+                filtredCard={filtredCards}
                 setModalInfo={setModalInfo}
                 setIsModalOpen={setIsModalOpen}
               />
@@ -404,103 +544,7 @@ const App = () => {
               <Form setFormInner={setFormInner} />
             </div>
             <div className="contact-page__represent">
-              <div className="represent__lines">
-                <div className="line">
-                  <div className="line__number">1</div>
-                  <code className="line__text">
-                    <span className="line__text_pink">const </span>
-                    <span className="line__text_blue">
-                      button <span className="line__text_pink"> = </span>
-                      document
-                    </span>
-                    .<span className="line__text_blue">querySelector</span>
-                    &#40;<span className="line__text_orange">'#sendBtn'</span>
-                    &#41;;
-                  </code>
-                </div>
-                <div className="line">
-                  <div className="line__number">2</div>
-                  <code className="line__text"></code>
-                </div>
-                <div className="line">
-                  <div className="line__number">3</div>
-                  <code className="line__text">
-                    <span className="line__text_pink">const </span>
-                    <span className="line__text_blue">message </span>
-                    <span className="line__text_pink"> = </span>
-                    &#123;
-                  </code>
-                </div>
-                <div className="line">
-                  <div className="line__number">4</div>
-                  <code className="line__text">
-                    <span className="line__text_blue">name:</span>
-                    <span className="line__text_orange">
-                      "{formInner?.name}"
-                    </span>
-                    ,
-                  </code>
-                </div>
-                <div className="line">
-                  <div className="line__number">5</div>
-                  <code className="line__text">
-                    <span className="line__text_blue">email:</span>
-                    <span className="line__text_orange">
-                      "{formInner?.email}"
-                    </span>
-                    ,
-                  </code>
-                </div>
-                <div className="line">
-                  <div className="line__number">6</div>
-                  <code className="line__text">
-                    <span className="line__text_blue">message:</span>
-                    <span className="line__text_orange">
-                      "{formInner?.message}"
-                    </span>
-                    ,
-                  </code>
-                </div>
-                <div className="line">
-                  <div className="line__number">7</div>
-                  <code className="line__text">
-                    <span className="line__text_blue">date:</span>
-                    <time className="line__text_orange">
-                      "{new Date().toDateString()}"
-                    </time>
-                    ,
-                  </code>
-                </div>
-                <div className="line">
-                  <div className="line__number">8</div>
-                  <code className="line__text">&#125;</code>
-                </div>
-                <div className="line">
-                  <div className="line__number">9</div>
-                  <code className="line__text"></code>
-                </div>
-                <div className="line">
-                  <div className="line__number">10</div>
-                  <code className="line__text">
-                    <span className="line__text_blue">button</span>.
-                    <span className="line__text_blue">addEventListener</span>
-                    &#40;<span className="line__text_orange">'click'</span>,
-                    &#40; &#41; <span className="line__text_pink">=&gt;</span>
-                  </code>
-                </div>
-                <div className="line">
-                  <div className="line__number">11</div>
-                  <code className="line__text">
-                    <span className="line__text_blue">form</span>.
-                    <span className="line__text_blue">send</span>&#40;
-                    <span className="line__text_blue">message</span>&#41;;
-                  </code>
-                </div>
-                <div className="line">
-                  <div className="line__number">12</div>
-                  <code className="line__text">&#125;&#41;</code>
-                </div>
-              </div>
+              <Represent formInner={formInner} />
             </div>
           </main>
         </>

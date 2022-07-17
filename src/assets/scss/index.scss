@@ -226,12 +226,17 @@ body {
   display: grid;
   grid-template-columns: auto 0.9fr 1.1fr;
   &__form {
+    padding: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-right: 1px solid $color-border-main;
   }
   &__represent {
+    padding: 0 2rem;
+    height: calc(100vh - (3rem + 57px + 52px));
+    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -260,6 +265,7 @@ body {
     }
     &_orange {
       color: #fea55f;
+      word-break: break-all;
     }
     &_pink {
       color: #c98bdf;

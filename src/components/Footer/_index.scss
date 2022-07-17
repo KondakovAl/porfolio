@@ -15,21 +15,54 @@
     border-right: 1px solid $color-border-main;
   }
   &__item-link {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     border-right: 1px solid $color-border-main;
     padding: 15px;
     width: 50px;
+    &:hover {
+      .social__item-prompt {
+        opacity: 1;
+      }
+      .social__item {
+        fill: #ffffff;
+      }
+    }
+  }
+  &__item-prompt {
+    position: absolute;
+    text-align: center;
+    width: 110px;
+    height: 42px;
+    top: 0;
+    transform: translateY(-135%);
+    background: $primary-color;
+    color: #fff;
+    border-radius: 7px;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+
+    &::after {
+      content: "";
+
+      position: absolute;
+      border: 8px solid transparent;
+      border-top: 14px solid $primary-color;
+      border-bottom: none;
+      bottom: -13px;
+      left: 46px;
+    }
   }
   &__item-link:last-child {
     display: none;
   }
   &__item {
     transition: 0.3s ease-in;
-    &:hover {
-      fill: #ffffff;
-    }
   }
 }
 
