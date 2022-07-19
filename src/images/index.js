@@ -1,4 +1,7 @@
 ///*Education Files//
-import bachDiploma from "../assets/files/Bachelor-diploma.pdf";
+import bachDiploma from "../assets/files/bachDiploma.pdf";
+import Courses from "../assets/files/MPEICour.pdf";
+import FCE from "../assets/files/FCE.pdf";
+import CV from "../assets/files/CV.pdf";
 
-export default bachDiploma;
+export { bachDiploma, Courses, CV, FCE };

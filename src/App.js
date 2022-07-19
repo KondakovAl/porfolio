@@ -29,7 +29,7 @@ import { ReactComponent as CoursesEng } from "./assets/images/Courses-Eng.svg";
 import { ReactComponent as CoursesFront } from "./assets/images/Courses-Front.svg";
 
 /*IMPORTING FROM INDEX*/
-import bachDiploma from "./images/index";
+import { bachDiploma, Courses, CV, FCE } from "./images/index";
 
 //*Skills Icons//
 import { ReactComponent as Folder } from "./assets/images/folder.svg";
@@ -261,13 +261,24 @@ const data = {
   info: {
     education: [
       {
+        step: "SkillCocks University",
+        icon: <CoursesFront fill="white" />,
+        place: "Self-taught",
+        location: "Planet Earth",
+        specialization: "Frontend Developer",
+        time: "2022 - Present",
+        href: CV,
+        download: "CV",
+      },
+      {
         step: "Cambridge Certificate",
         icon: <CoursesEng fill="white" />,
         place: "Surgut school of foreign languages",
         location: "Surgut",
         specialization: "FCE (B2 Upper-Intermediate)",
         time: "2010 - 2017",
-        href: bachDiploma,
+        href: FCE,
+        download: "certificate",
       },
       {
         step: "University",
@@ -278,6 +289,7 @@ const data = {
           "Bachelor's Degree (Electrical Power Systems and Networks)",
         time: "2017 - 2021",
         href: bachDiploma,
+        download: "diploma",
       },
       {
         step: "University",
@@ -287,7 +299,8 @@ const data = {
         specialization:
           "Retraining courses (Translator in the field of professional communication)",
         time: "2017 - 2019",
-        href: bachDiploma,
+        href: Courses,
+        download: "courses",
       },
       {
         step: "University",
@@ -297,16 +310,8 @@ const data = {
         specialization:
           "Master's Degree (Engineering in electric power industry)",
         time: "2021 - Present",
-        href: bachDiploma,
-      },
-      {
-        step: "SkillCocks University",
-        icon: <CoursesFront fill="white" />,
-        place: "Self-taught",
-        location: "Planet Earth",
-        specialization: "Frontend Developer",
-        time: "2022 - Present",
-        href: bachDiploma,
+        href: "",
+        download: "",
       },
     ],
     skills: [
@@ -411,13 +416,23 @@ const Education = ({ education }) => {
           <p className="education__text">
             {ed.specialization} / {ed.time}
           </p>
-          <a
-            href={bachDiploma}
-            download="Bachelor's Diploma.pdf"
-            className="education__link"
-          >
-            <Button className={"education__button"}>download-diploma</Button>
-          </a>
+          {ed.href || ed.href ? (
+            <div className="education__link-container">
+              <a
+                href={ed.href}
+                download={`${ed.download}.pdf`}
+                className="education__link"
+              >
+                <Button
+                  className={"education__button"}
+                >{`download-${ed.download}`}</Button>
+              </a>
+            </div>
+          ) : (
+            <Button className={"education__button"} disabled>
+              ...in process
+            </Button>
+          )}
         </div>
       ))}
     </div>
