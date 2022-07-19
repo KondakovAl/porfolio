@@ -91,14 +91,13 @@ body {
     flex-direction: column;
     border-right: 1px solid $color-border-main;
   }
-  &__later {
+  &__slider-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 50px;
-    text-align: center;
-    line-height: 50px;
-    color: $color-light;
+    justify-content: center;
+    height: calc(100vh - (3rem + 57px + 52px + 3px));
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 }
 
@@ -116,7 +115,51 @@ body {
     overflow-y: auto;
   }
   &__content {
-    height: 100%;
+    padding: 2rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    /*+2px its extra px to container */
+    height: calc(100vh - (1.5rem * 2 + (58px + 2px) + 42px + 52px));
+    display: flex;
+    align-items: baseline;
+  }
+}
+
+.education {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 80%;
+      height: 2px;
+    }
+  }
+  &__step {
+    color: $color-blue;
+    font-weight: $font-weight;
+    margin: 0 0 20px;
+  }
+  &__description-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 0 0 10px;
+  }
+  &__text {
+    &_light {
+      color: $color-light;
+    }
+  }
+  &__link {
+    display: flex;
+    margin: 20px 0 0;
   }
 }
 
@@ -124,6 +167,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: -webkit-fill-available;
   &__content {
     display: flex;
     flex-wrap: wrap;
@@ -218,7 +262,6 @@ body {
     flex-direction: column;
   }
 }
-
 /*Contact Page Component*/
 
 .contact-page {
@@ -226,26 +269,30 @@ body {
   display: grid;
   grid-template-columns: auto 0.9fr 1.1fr;
   &__form {
-    padding: 2rem;
     display: flex;
+    padding: 2rem;
+    align-items: baseline;
     justify-content: center;
-    align-items: center;
+    height: calc(100vh - (3rem + 57px + 52px + 3px));
+    overflow-x: hidden;
+    overflow-y: auto;
     border-right: 1px solid $color-border-main;
   }
   &__represent {
-    padding: 0 2rem;
-    height: calc(100vh - (3rem + 57px + 52px));
+    display: flex;
+    padding: 2rem;
+    align-items: baseline;
+    justify-content: center;
+    height: calc(100vh - (3rem + 57px + 52px + 3px));
     overflow-x: hidden;
     overflow-y: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 
 .represent__lines {
   display: flex;
   flex-direction: column;
+  margin: auto 0;
 }
 
 .line {
@@ -276,6 +323,7 @@ body {
 .line:nth-child(4),
 .line:nth-child(5),
 .line:nth-child(6),
-.line:nth-child(7) {
+.line:nth-child(7),
+.line:nth-child(8) {
   gap: 50px;
 }

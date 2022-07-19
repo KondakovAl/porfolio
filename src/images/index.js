@@ -1,3 +1,4 @@
-import twitter from "../assets/images/twitter.svg";
+///*Education Files//
+import bachDiploma from "../assets/files/Bachelor-diploma.pdf";
 
-export { twitter };
+export default bachDiploma;

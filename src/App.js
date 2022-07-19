@@ -6,11 +6,13 @@ import "./assets/scss/index.scss";
 import Header from "./components/Header/index";
 import HomePage from "./components/HomePage/index";
 import Footer from "./components/Footer/index";
+import Slider from "./components/Slider";
 import Form from "./components/Form/index";
 import Aside from "./components/Aside/index";
 import Tabs from "./components/Tabs/index";
 import ProjectsCards from "./components/ProjectsCards/index";
 import Modal from "./components/Modal/index";
+import Button from "./components/Button";
 
 /*Icons*/
 import { ReactComponent as Telegram } from "./assets/images/telegram.svg";
@@ -19,13 +21,22 @@ import { ReactComponent as Vk } from "./assets/images/vk.svg";
 import { ReactComponent as Github } from "./assets/images/github.svg";
 //*Social Icons//
 
+//*Education Icons//
+import { ReactComponent as MPEIBach } from "./assets/images/MPEI-Bach.svg";
+import { ReactComponent as MPEIMag } from "./assets/images/MPEI-Mag.svg";
+import { ReactComponent as MPEICour } from "./assets/images/MPEI-Cour.svg";
+import { ReactComponent as CoursesEng } from "./assets/images/Courses-Eng.svg";
+import { ReactComponent as CoursesFront } from "./assets/images/Courses-Front.svg";
+
+/*IMPORTING FROM INDEX*/
+import bachDiploma from "./images/index";
+
 //*Skills Icons//
 import { ReactComponent as Folder } from "./assets/images/folder.svg";
 import { ReactComponent as Mail } from "./assets/images/mail.svg";
 import { ReactComponent as Phone } from "./assets/images/phone.svg";
 import { ReactComponent as Development } from "./assets/images/development.svg";
 import { ReactComponent as SkillsIcon } from "./assets/images/skills.svg";
-
 import { ReactComponent as ReactIcon } from "./assets/images/react.svg";
 import { ReactComponent as HTMLIcon } from "./assets/images/html.svg";
 import { ReactComponent as CSSIcon } from "./assets/images/css.svg";
@@ -35,6 +46,15 @@ import { ReactComponent as ReduxIcon } from "./assets/images/redux.svg";
 import { ReactComponent as TSIcon } from "./assets/images/TS.svg";
 import { ReactComponent as GitIcon } from "./assets/images/git.svg";
 import { ReactComponent as FigmaIcon } from "./assets/images/figma.svg";
+
+//*Slides//
+import slide1 from "./assets/images/slide1.jpg";
+import slide2 from "./assets/images/slide2.jpg";
+import slide3 from "./assets/images/slide3.jpg";
+import slide4 from "./assets/images/slide4.jpg";
+import slide5 from "./assets/images/slide5.jpg";
+import slide6 from "./assets/images/slide6.jpg";
+import slide7 from "./assets/images/slide7.jpg";
 
 //*Cards Icons*/
 import { ReactComponent as HTMLIconCard } from "./assets/images/html-card.svg";
@@ -52,6 +72,16 @@ const data = {
     { name: "about-me" },
     { name: "projects" },
     { name: "contact-me" },
+  ],
+
+  images: [
+    <img key={slide1} src={slide1} />,
+    <img key={slide2} src={slide2} />,
+    <img key={slide3} src={slide3} />,
+    <img key={slide4} src={slide4} />,
+    <img key={slide5} src={slide5} />,
+    <img key={slide6} src={slide6} />,
+    <img key={slide7} src={slide7} />,
   ],
 
   socials: [
@@ -229,6 +259,56 @@ const data = {
   },
 
   info: {
+    education: [
+      {
+        step: "Cambridge Certificate",
+        icon: <CoursesEng fill="white" />,
+        place: "Surgut school of foreign languages",
+        location: "Surgut",
+        specialization: "FCE (B2 Upper-Intermediate)",
+        time: "2010 - 2017",
+        href: bachDiploma,
+      },
+      {
+        step: "University",
+        icon: <MPEIBach fill="white" />,
+        place: "Moscow Power Engineering Institute",
+        location: "Moscow",
+        specialization:
+          "Bachelor's Degree (Electrical Power Systems and Networks)",
+        time: "2017 - 2021",
+        href: bachDiploma,
+      },
+      {
+        step: "University",
+        icon: <MPEICour fill="white" />,
+        place: "Moscow Power Engineering Institute",
+        location: "Moscow",
+        specialization:
+          "Retraining courses (Translator in the field of professional communication)",
+        time: "2017 - 2019",
+        href: bachDiploma,
+      },
+      {
+        step: "University",
+        icon: <MPEIMag fill="white" />,
+        place: "Moscow Power Engineering Institute",
+        location: "Moscow",
+        specialization:
+          "Master's Degree (Engineering in electric power industry)",
+        time: "2021 - Present",
+        href: bachDiploma,
+      },
+      {
+        step: "SkillCocks University",
+        icon: <CoursesFront fill="white" />,
+        place: "Self-taught",
+        location: "Planet Earth",
+        specialization: "Frontend Developer",
+        time: "2022 - Present",
+        href: bachDiploma,
+      },
+    ],
     skills: [
       {
         icon: <HTMLIcon fill="rgba(96, 123, 150, 0.4)" />,
@@ -315,6 +395,35 @@ const Skills = ({ skills }) => {
   );
 };
 
+const Education = ({ education }) => {
+  return (
+    <div className="education">
+      {education.map((ed, index) => (
+        <div className="education__content" key={index}>
+          <div className="education__step">{ed.step}</div>
+          <div className="education__description-container">
+            <div className="education__icon-container">{ed.icon}</div>
+            <p className="education__text">
+              <span className="education__text_light">{ed.place} </span>/{" "}
+              {ed.location}
+            </p>
+          </div>
+          <p className="education__text">
+            {ed.specialization} / {ed.time}
+          </p>
+          <a
+            href={bachDiploma}
+            download="Bachelor's Diploma.pdf"
+            className="education__link"
+          >
+            <Button className={"education__button"}>download-diploma</Button>
+          </a>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const Represent = ({ formInner }) => {
   const getTime = () => {
     let date = new Date();
@@ -391,24 +500,33 @@ const Represent = ({ formInner }) => {
       <div className="line">
         <div className="line__number">7</div>
         <code className="line__text">
-          <span className="line__text_blue">date:</span>
+          <span className="line__text_blue">time:</span>
           <time className="line__text_orange">
-            "{`${timeNow.hours}:${timeNow.minutes}:${timeNow.seconds} `}
-            {new Date().toDateString()}"
+            "{`${timeNow.hours}:${timeNow.minutes}:${timeNow.seconds}`}"
           </time>
           ,
         </code>
       </div>
       <div className="line">
         <div className="line__number">8</div>
-        <code className="line__text">&#125;</code>
+        <code className="line__text">
+          <span className="line__text_blue">date:</span>
+          <time className="line__text_orange">
+            "{new Date().toDateString()}"
+          </time>
+          ,
+        </code>
       </div>
       <div className="line">
         <div className="line__number">9</div>
-        <code className="line__text"></code>
+        <code className="line__text">&#125;</code>
       </div>
       <div className="line">
         <div className="line__number">10</div>
+        <code className="line__text"></code>
+      </div>
+      <div className="line">
+        <div className="line__number">11</div>
         <code className="line__text">
           <span className="line__text_blue">button</span>.
           <span className="line__text_blue">addEventListener</span>
@@ -417,7 +535,7 @@ const Represent = ({ formInner }) => {
         </code>
       </div>
       <div className="line">
-        <div className="line__number">11</div>
+        <div className="line__number">12</div>
         <code className="line__text">
           <span className="line__text_blue">form</span>.
           <span className="line__text_blue">send</span>&#40;
@@ -425,7 +543,7 @@ const Represent = ({ formInner }) => {
         </code>
       </div>
       <div className="line">
-        <div className="line__number">12</div>
+        <div className="line__number">13</div>
         <code className="line__text">&#125;&#41;</code>
       </div>
     </div>
@@ -436,7 +554,7 @@ const App = () => {
   /*Main Navigation*/
   const [variant, setVariant] = useState("hello");
   /*Change Main Info+Tabs*/
-  const [activeInfo, setActiveInfo] = useState("skills");
+  const [activeInfo, setActiveInfo] = useState("education");
   const [activeTab, setActiveTab] = useState("personal-info");
   /*CheckBoxes Filtration*/
   const [stateWithCheckbox, setStateWithCheckbox] = useState([]);
@@ -487,21 +605,20 @@ const App = () => {
                 activeTab={activeTab}
                 activeInfo={activeInfo}
               />
-              <div className="info__scroll">
-                <div className="info__container">
-                  <section
-                    className={
-                      activeInfo
-                        ? `info__content info__${activeInfo}`
-                        : `info__content`
-                    }
-                  >
-                    {activeInfo === "skills" && <Skills {...data.info} />}
-                  </section>
-                </div>
-              </div>
+              <section
+                className={
+                  activeInfo
+                    ? `info__content info__${activeInfo}`
+                    : `info__content`
+                }
+              >
+                {activeInfo === "education" && <Education {...data.info} />}
+                {activeInfo === "skills" && <Skills {...data.info} />}
+              </section>
             </div>
-            {/* <div className="about-page__later">is under development</div> */}
+            <div className="about-page__slider-container">
+              <Slider img={data.images} />
+            </div>
           </main>
         </>
       )}
@@ -540,12 +657,12 @@ const App = () => {
               variant={variant}
               widgets={data.widgets}
             />
-            <div className="contact-page__form">
+            <section className="contact-page__form">
               <Form setFormInner={setFormInner} />
-            </div>
-            <div className="contact-page__represent">
+            </section>
+            <section className="contact-page__represent represent">
               <Represent formInner={formInner} />
-            </div>
+            </section>
           </main>
         </>
       )}
