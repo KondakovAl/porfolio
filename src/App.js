@@ -31,6 +31,14 @@ import { ReactComponent as CoursesFront } from "./assets/images/Courses-Front.sv
 /*IMPORTING FROM INDEX*/
 import { bachDiploma, Courses, CV, FCE } from "./images/index";
 
+/*Interests*/
+import { ReactComponent as Gaming } from "./assets/images/interests_gaming.svg";
+import { ReactComponent as Volleyball } from "./assets/images/interests_volleyball.svg";
+import { ReactComponent as Swimming } from "./assets/images/interests_swimming.svg";
+import { ReactComponent as Tennis } from "./assets/images/interests_tennis.svg";
+import { ReactComponent as Travelling } from "./assets/images/interests_travelling.svg";
+import { ReactComponent as Camping } from "./assets/images/interests_camping.svg";
+
 //*Skills Icons//
 import { ReactComponent as Folder } from "./assets/images/folder.svg";
 import { ReactComponent as Mail } from "./assets/images/mail.svg";
@@ -259,6 +267,28 @@ const data = {
   },
 
   info: {
+    bio: {
+      skills: [
+        { skill: "Organization" },
+        { skill: "Planning" },
+        { skill: "Analysis" },
+        { skill: "Logical reasoning" },
+        { skill: "Active listeting" },
+        { skill: "Self-motivation" },
+        { skill: "Experimentation" },
+        { skill: "Questioning" },
+        { skill: "Self-management" },
+        { skill: "Calmness" },
+      ],
+      interests: [
+        { icon: <Travelling fill="white" />, interest: "Travelling" },
+        { icon: <Camping fill="white" />, interest: "Camping" },
+        { icon: <Volleyball fill="white" />, interest: "Volleyball" },
+        { icon: <Swimming fill="white" />, interest: "Swimming" },
+        { icon: <Tennis fill="white" />, interest: "Tennis" },
+        { icon: <Gaming fill="white" />, interest: "Gaming" },
+      ],
+    },
     education: [
       {
         step: "SkillCocks University",
@@ -413,10 +443,12 @@ const Education = ({ education }) => {
               {ed.location}
             </p>
           </div>
-          <p className="education__text">
-            {ed.specialization} / {ed.time}
-          </p>
-          {ed.href || ed.href ? (
+          <div className="education__description-container">
+            <p className="education__text">
+              {ed.specialization} / {ed.time}
+            </p>
+          </div>
+          {ed.href && ed.download ? (
             <div className="education__link-container">
               <a
                 href={ed.href}
@@ -436,6 +468,58 @@ const Education = ({ education }) => {
         </div>
       ))}
     </div>
+  );
+};
+
+const Bio = ({ bio }) => {
+  return (
+    <article className="bio">
+      <p className="bio__text">
+        <span className="bio__text_peach">Hello World!</span> I'm{" "}
+        <span className="bio__text_light">Aleksandr Kondakov</span>,{" "}
+        <span className="bio__text_light-green">a Front-End Web Developer</span>{" "}
+        based out Moscow. I started my jorney as a developer in{" "}
+        <span className="bio__text_light">February 2022</span> and I still
+        exploring technologies and frameworks that catch my interest.
+      </p>
+      <p className="bio__text">
+        I'm aware this is a fast growing, morden industry. Therefore, I made
+        sure to learn and use frameworks and tools such as{" "}
+        <span className="bio__text_blue">React</span>,{" "}
+        <span className="bio__text_blue">TypeScript</span>,{" "}
+        <span className="bio__text_blue">Redux</span>,{" "}
+        <span className="bio__text_blue">SCSS</span> in order to effeciently
+        build websites using laterst tools.
+      </p>
+      <p className="bio__text">
+        I'm now looking for a junior dev position to finaly kick start to my
+        career and learn amoung professionals.{" "}
+        <span className="bio__text_light">Drop me a line</span> in the contact
+        form in the tab "_contact-me" or check me at socials below, also you can
+        look at tab "contacts" in sidebar to call me or write a letter.
+      </p>
+      <div className="bio__soft-skills soft-skills">
+        <h2 className="soft-skills__title">Soft Skills</h2>
+        <div className="soft-skills__item-container">
+          {bio.skills.map((skill, index) => (
+            <div className="soft-skills__item" key={index}>
+              {skill.skill}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="bio__interests interests">
+        <h2 className="interests__title">interests</h2>
+        <ul className="interests__container">
+          {bio.interests.map((interest, index) => (
+            <li className="interests__item-container">
+              <div className="interests__icon-container">{interest.icon}</div>
+              <div className="interest__text">{interest.interest}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
   );
 };
 
@@ -569,7 +653,7 @@ const App = () => {
   /*Main Navigation*/
   const [variant, setVariant] = useState("hello");
   /*Change Main Info+Tabs*/
-  const [activeInfo, setActiveInfo] = useState("education");
+  const [activeInfo, setActiveInfo] = useState("bio");
   const [activeTab, setActiveTab] = useState("personal-info");
   /*CheckBoxes Filtration*/
   const [stateWithCheckbox, setStateWithCheckbox] = useState([]);
@@ -627,6 +711,7 @@ const App = () => {
                     : `info__content`
                 }
               >
+                {activeInfo === "bio" && <Bio {...data.info} />}
                 {activeInfo === "education" && <Education {...data.info} />}
                 {activeInfo === "skills" && <Skills {...data.info} />}
               </section>

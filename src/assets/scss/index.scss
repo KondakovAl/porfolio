@@ -121,7 +121,115 @@ body {
     /*+2px its extra px to container */
     height: calc(100vh - (1.5rem * 2 + (58px + 2px) + 42px + 52px));
     display: flex;
+    flex-direction: column;
     align-items: baseline;
+  }
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  &__text {
+    margin: 0 0 20px;
+    text-align: justify;
+    text-indent: 35px;
+    &:last-of-type {
+      margin: 0;
+    }
+    &_light {
+      color: $color-light;
+    }
+    &_peach {
+      color: $color-peach;
+    }
+    &_blue {
+      color: $color-blue;
+    }
+    &_light-green {
+      color: $color-light-green;
+    }
+  }
+}
+
+.soft-skills {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0 0;
+  &__title {
+    font-size: 25px;
+    color: $color-light;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 2px rgba(150, 150, 150, 0.77);
+    margin: 0 0 20px;
+  }
+  &__item-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  &__item {
+    outline: 2px solid $color-border-main;
+    padding: 10px;
+    border-radius: 10px;
+    color: $color-light;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    opacity: 0;
+    background: linear-gradient(
+      to bottom right,
+      rgba(67, 217, 173, 0.4) 25%,
+      rgba(201, 139, 223, 0.4),
+      rgba(77, 91, 206, 0.4) 75%
+    );
+    transition: transform 0.6s ease;
+    cursor: default;
+    &:hover {
+      transform: scale(1.05);
+    }
+    $itemDelay: 0.4s;
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation: fadeIn 1s ease-in-out;
+        animation-delay: $itemDelay * $i;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.interests {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0 0;
+  &__title {
+    font-size: 25px;
+    color: $color-light;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 2px rgb(150 150 150 / 77%);
+    margin: 0 0 20px;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__item-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
   }
 }
 
@@ -155,6 +263,9 @@ body {
     gap: 10px;
     align-items: center;
     margin: 0 0 10px;
+    &:nth-child(3) {
+      margin: 0 0 20px;
+    }
   }
   &__text {
     &_light {
@@ -162,7 +273,6 @@ body {
     }
   }
   &__link-container {
-    margin: 20px 0 0;
   }
   &__button.--disabled {
     transform: translate(3px, 3px);
