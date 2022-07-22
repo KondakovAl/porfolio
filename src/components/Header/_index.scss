@@ -3,25 +3,76 @@
 .header {
   display: flex;
   border-bottom: 1px solid $color-border-main;
-  z-index: 10;
+  position: relative;
+
   &__logo {
     width: $aside-width;
-    padding: 18px 22px;
+    padding: 18px 15px 18px 22px;
     border-right: 1px solid $color-border-main;
+    z-index: 98;
   }
-  &__navigation {
+  &__wrapper {
+    z-index: 98;
+    width: 100%;
     display: flex;
-    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    background: $bg-color;
+  }
+  &__burger {
+    margin-left: auto;
+    display: flex;
+    padding: auto;
+    cursor: pointer;
+    padding: 1rem;
   }
 }
 
 .navigation {
+  display: flex;
+  flex-grow: 1;
+  &.--open {
+    transform: translateY(0);
+    .navigation__blur {
+      position: absolute;
+      top: 0;
+      backdrop-filter: blur(2px);
+      transition: backdrop-filter 0.5s ease-in;
+    }
+  }
+  @media (max-width: 949px) {
+    z-index: 98;
+    position: absolute;
+    width: calc(100vw - 2 * $main-padding);
+    height: fit-content;
+    // top: calc($main-padding + 58px + 1px);
+    // left: calc($main-padding);
+    top: 58px;
+    left: 0;
+    flex-direction: column;
+    transform: translateY(-250%);
+    transition: transform 0.4s ease-in;
+    background: $bg-color;
+  }
+
+  &__blur {
+    display: flex;
+    width: calc(100vw - 2 * $main-padding);
+    height: calc(100vh - 2 * $main-padding - 58px);
+    position: absolute;
+    top: -200%;
+  }
+
   &__item {
     position: relative;
     padding: 18px 32px;
     border-right: 1px solid $color-border-main;
     transition: 0.3s ease-in;
     cursor: pointer;
+    @media (max-width: 949px) {
+      border: 1px solid $color-border-main;
+      border-top: none;
+    }
 
     &::after {
       position: absolute;
@@ -31,6 +82,10 @@
       background: transparent;
       height: 3px;
       width: 100%;
+      @media (max-width: 949px) {
+        height: 100%;
+        width: 5px;
+      }
     }
 
     &.--active {
@@ -46,10 +101,25 @@
     margin-left: auto;
     border: none;
     border-left: 1px solid $color-border-main;
+    @media (max-width: 1024px) {
+      border-left: none;
+      margin-left: 0;
+    }
+
+    @media (max-width: 949px) {
+      border: 1px solid $color-border-main;
+      border-top: none;
+    }
   }
 
-  &.--active {
-    .navigation__item:after {
+  &__item:first-child {
+    @media (max-width: 1024px) {
+      border-left: 1px solid $color-border-main;
+      margin-left: auto;
+    }
+    @media (max-width: 950px) {
+      border-left: none;
+      margin-left: 0;
     }
   }
 }

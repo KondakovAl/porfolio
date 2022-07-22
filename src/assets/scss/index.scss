@@ -102,18 +102,6 @@ body {
 }
 
 .info {
-  &__scroll {
-    overflow: hidden;
-  }
-  &__container {
-    display: flex;
-    flex-direction: column;
-    text-align: justify;
-    flex-grow: 1;
-    padding: 1.5rem 2rem;
-    height: 100%;
-    overflow-y: auto;
-  }
   &__content {
     padding: 2rem;
     overflow-x: hidden;
@@ -124,6 +112,15 @@ body {
     flex-direction: column;
     align-items: baseline;
   }
+}
+
+.title {
+  font-size: 25px;
+  color: $color-light;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 2px rgba(150, 150, 150, 0.77);
+  margin: 0 0 25px;
+  text-align: center;
 }
 
 .bio {
@@ -157,10 +154,6 @@ body {
   flex-direction: column;
   margin: 40px 0 0;
   &__title {
-    font-size: 25px;
-    color: $color-light;
-    text-transform: uppercase;
-    text-shadow: 3px 3px 2px rgba(150, 150, 150, 0.77);
     margin: 0 0 20px;
   }
   &__item-container {
@@ -188,7 +181,7 @@ body {
     &:hover {
       transform: scale(1.05);
     }
-    $itemDelay: 0.4s;
+    $itemDelay: 0.2s;
     @for $i from 1 through 10 {
       &:nth-child(#{$i}) {
         animation: fadeIn 1s ease-in-out;
@@ -213,23 +206,43 @@ body {
 .interests {
   display: flex;
   flex-direction: column;
-  margin: 40px 0 0;
   &__title {
-    font-size: 25px;
-    color: $color-light;
-    text-transform: uppercase;
-    text-shadow: 3px 3px 2px rgb(150 150 150 / 77%);
-    margin: 0 0 20px;
+    margin: 0 0 25px;
+    text-align: start;
   }
   &__container {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    font-size: 18px;
   }
   &__item-container {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin: 0 0 0 10px;
+    opacity: 0;
+    transform: translateX(-100%);
+    $itemDelay: 0.2s;
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        animation: FadeLeft 1s ease-in-out;
+        animation-delay: $itemDelay * $i;
+        animation-fill-mode: forwards;
+      }
+      &:nth-child(#{$i}) .interest__text {
+        animation: changeColor 0.3s ease;
+        animation-delay: calc($itemDelay + 0.1s) * $i;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}
+
+@keyframes FadeLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -272,20 +285,42 @@ body {
       color: $color-light;
     }
   }
-  &__link-container {
+}
+
+.development {
+  display: flex;
+  flex-direction: column;
+  &__content {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 1rem;
+    outline: 2px solid $color-border-main;
+    border-radius: 10px;
+    margin: 0 0 20px;
   }
-  &__button.--disabled {
-    transform: translate(3px, 3px);
-    box-shadow: 0px 0px 0px #607b96;
-    cursor: auto;
+
+  &__text {
+    &_colored {
+      color: $color-light-green;
+    }
+    &_option {
+      margin: 0 10px 0 0;
+      color: $color-light;
+    }
   }
 }
 
 .skills {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   width: -webkit-fill-available;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
   &__content {
     display: flex;
     flex-wrap: wrap;

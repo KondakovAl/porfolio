@@ -95,13 +95,13 @@ const Widget = ({
 
         <span className="widget__header-text">{title}</span>
       </div>
-      <div
-        className="widget__content"
-        onClick={() => {
-          activeInfo && title !== "contacts" && setActiveTab(title);
-        }}
-      >
-        <ul className="folder">
+      <div className="widget__content">
+        <ul
+          className="folder"
+          onClick={() => {
+            activeInfo && title !== "contacts" && setActiveTab(title);
+          }}
+        >
           {links.map((link, index) => (
             <Folder
               key={index}

@@ -11,10 +11,19 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.1s ease-out;
+  transition: translate 0.1s ease-in, text-shadow 0.3s ease-in;
   box-shadow: 3px 3px 0px #607b96;
   &:active {
     transform: translate(3px, 3px);
     box-shadow: 0px 0px 0px #607b96;
+  }
+  &:hover {
+    text-shadow: 0px 0px 4px $color-light;
+  }
+  &.--disabled {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px #607b96;
+    text-shadow: none;
+    cursor: auto;
   }
 }

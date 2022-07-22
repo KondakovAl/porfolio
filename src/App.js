@@ -43,7 +43,7 @@ import { ReactComponent as Camping } from "./assets/images/interests_camping.svg
 import { ReactComponent as Folder } from "./assets/images/folder.svg";
 import { ReactComponent as Mail } from "./assets/images/mail.svg";
 import { ReactComponent as Phone } from "./assets/images/phone.svg";
-import { ReactComponent as Development } from "./assets/images/development.svg";
+import { ReactComponent as DevelopmentIcon } from "./assets/images/development.svg";
 import { ReactComponent as SkillsIcon } from "./assets/images/skills.svg";
 import { ReactComponent as ReactIcon } from "./assets/images/react.svg";
 import { ReactComponent as HTMLIcon } from "./assets/images/html.svg";
@@ -73,6 +73,10 @@ import { ReactComponent as ReactIconCard } from "./assets/images/react-card.svg"
 /*Images*/
 import project1 from "./assets/images/project1.png";
 import project2 from "./assets/images/project2.png";
+
+/*Burger*/
+
+import { useWindowWidth } from "./hooks/useWindowWidth";
 
 const data = {
   links: [
@@ -151,7 +155,10 @@ const data = {
       {
         title: "professional-info",
         links: [
-          { name: "development", pic: <Development fill="cornflowerblue" /> },
+          {
+            name: "development",
+            pic: <DevelopmentIcon fill="cornflowerblue" />,
+          },
           { name: "skills", pic: <SkillsIcon fill="#C98BDF" /> },
         ],
       },
@@ -268,6 +275,7 @@ const data = {
 
   info: {
     bio: {
+      title: "Soft-Skills",
       skills: [
         { skill: "Organization" },
         { skill: "Planning" },
@@ -280,6 +288,10 @@ const data = {
         { skill: "Self-management" },
         { skill: "Calmness" },
       ],
+    },
+
+    interests: {
+      title: "Interests",
       interests: [
         { icon: <Travelling fill="white" />, interest: "Travelling" },
         { icon: <Camping fill="white" />, interest: "Camping" },
@@ -289,6 +301,7 @@ const data = {
         { icon: <Gaming fill="white" />, interest: "Gaming" },
       ],
     },
+
     education: [
       {
         step: "SkillCocks University",
@@ -344,88 +357,124 @@ const data = {
         download: "",
       },
     ],
-    skills: [
-      {
-        icon: <HTMLIcon fill="rgba(96, 123, 150, 0.4)" />,
-        name: "HTML",
-        progress: "90",
-      },
-      {
-        icon: <CSSIcon fill="rgba(96, 123, 150, 0.4)" />,
-        name: "CSS",
-        progress: "80",
-      },
-      {
-        icon: <JSIcon fill="rgba(96, 123, 150, 0.4)" />,
-        name: "JS",
-        progress: "50",
-      },
-      {
-        icon: <SassIcon fill="rgba(96, 123, 150, 0.4)" />,
-        name: "Sass",
-        progress: "60",
-      },
-      {
-        icon: <ReactIcon fill="rgba(96, 123, 150, 0.4)" />,
-        name: "React",
-        progress: "20",
-      },
-      {
-        icon: <ReduxIcon fill="rgba(96, 123, 150, 0.4)" />,
-        name: "Redux",
-        progress: "5",
-      },
-      {
-        icon: <TSIcon fill="rgba(96, 123, 150, 0.4)" />,
-        name: "TS",
-        progress: "5",
-      },
-      {
-        icon: <GitIcon fill="rgba(96, 123, 150, 0.4)" />,
-        name: "Git",
-        progress: "30",
-      },
-      {
-        icon: <FigmaIcon fill="rgba(96, 123, 150, 0.4)" />,
-        name: "Figma",
-        progress: "95",
-      },
-    ],
+
+    development: {
+      title: "Experience",
+      development: [
+        {
+          time: "6 months",
+          company: "self-learning",
+          description: `I love developing great frontends and React is the one I feel most confident. I use React, SASS, and Typescript mostly. I've developed some react apps as PET projects, you can check it in the tab "_projects".`,
+        },
+      ],
+    },
+
+    skills: {
+      title: "Hard-Skills",
+      skills: [
+        {
+          icon: <HTMLIcon fill="rgba(96, 123, 150, 0.4)" />,
+          name: "HTML",
+          progress: "90",
+        },
+        {
+          icon: <CSSIcon fill="rgba(96, 123, 150, 0.4)" />,
+          name: "CSS",
+          progress: "80",
+        },
+        {
+          icon: <JSIcon fill="rgba(96, 123, 150, 0.4)" />,
+          name: "JS",
+          progress: "50",
+        },
+        {
+          icon: <SassIcon fill="rgba(96, 123, 150, 0.4)" />,
+          name: "Sass",
+          progress: "60",
+        },
+        {
+          icon: <ReactIcon fill="rgba(96, 123, 150, 0.4)" />,
+          name: "React",
+          progress: "20",
+        },
+        {
+          icon: <ReduxIcon fill="rgba(96, 123, 150, 0.4)" />,
+          name: "Redux",
+          progress: "5",
+        },
+        {
+          icon: <TSIcon fill="rgba(96, 123, 150, 0.4)" />,
+          name: "TS",
+          progress: "5",
+        },
+        {
+          icon: <GitIcon fill="rgba(96, 123, 150, 0.4)" />,
+          name: "Git",
+          progress: "30",
+        },
+        {
+          icon: <FigmaIcon fill="rgba(96, 123, 150, 0.4)" />,
+          name: "Figma",
+          progress: "95",
+        },
+      ],
+    },
   },
 };
 
-const Projects = ({ cards, setIsModalOpen, setModalInfo, filtredCards }) => {
+const Bio = ({ bio }) => {
   return (
-    <section className="layout__section projects">
-      <ProjectsCards
-        filtredCards={filtredCards}
-        cards={cards}
-        setIsModalOpen={setIsModalOpen}
-        setModalInfo={setModalInfo}
-      />
-    </section>
+    <article className="bio">
+      <p className="bio__text">
+        <span className="bio__text_peach">Hello World!</span> I'm{" "}
+        <span className="bio__text_light">Aleksandr Kondakov</span>,{" "}
+        <span className="bio__text_light-green">a Front-End Web Developer</span>{" "}
+        based out Moscow. I started my jorney as a developer in{" "}
+        <span className="bio__text_light">February 2022</span> and I still
+        exploring technologies and frameworks that catch my interest.
+      </p>
+      <p className="bio__text">
+        I'm aware this is a fast growing, morden industry. Therefore, I made
+        sure to learn and use frameworks and tools such as{" "}
+        <span className="bio__text_blue">React</span>,{" "}
+        <span className="bio__text_blue">TypeScript</span>,{" "}
+        <span className="bio__text_blue">Redux</span>,{" "}
+        <span className="bio__text_blue">SASS</span> in order to effeciently
+        build websites using laterst tools.
+      </p>
+      <p className="bio__text">
+        I'm now looking for a junior dev position to finaly kick start to my
+        career and learn amoung professionals.{" "}
+        <span className="bio__text_light">Drop me a line</span> in the contact
+        form in the tab "_contact-me" or check me at socials below, also you can
+        look at tab "contacts" in sidebar to call me or write a letter.
+      </p>
+      <div className="bio__soft-skills soft-skills">
+        <h2 className="soft-skills__title title">{bio.title}</h2>
+        <div className="soft-skills__item-container">
+          {bio.skills.map((skill, index) => (
+            <div className="soft-skills__item" key={index}>
+              {skill.skill}
+            </div>
+          ))}
+        </div>
+      </div>
+    </article>
   );
 };
 
-const Skills = ({ skills }) => {
+const Interests = ({ interests }) => {
   return (
-    <div className="skills">
-      {skills.map((skill, index) => (
-        <div className="skills__content" key={index}>
-          <div className="skills__icon">{skill.icon}</div>
-          <div className="skills__text">{skill.name}</div>
-          <div className="skills__progress">
-            <div
-              className="skills__progress-done"
-              style={{
-                maxWidth: `${skill.progress}%`,
-              }}
-            >
-              {skill.progress}%
-            </div>
-          </div>
-        </div>
-      ))}
+    <div className="interests">
+      <h2 className="interests__title title">{interests.title}</h2>
+      <ul className="interests__container">
+        {interests.interests.map((int, index) => (
+          <li className="interests__item-container" key={index}>
+            <div className="interests__icon-container">{int.icon}</div>
+            <div className="interest__text">{int.interest}</div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
@@ -471,55 +520,65 @@ const Education = ({ education }) => {
   );
 };
 
-const Bio = ({ bio }) => {
+const Development = ({ development }) => {
   return (
-    <article className="bio">
-      <p className="bio__text">
-        <span className="bio__text_peach">Hello World!</span> I'm{" "}
-        <span className="bio__text_light">Aleksandr Kondakov</span>,{" "}
-        <span className="bio__text_light-green">a Front-End Web Developer</span>{" "}
-        based out Moscow. I started my jorney as a developer in{" "}
-        <span className="bio__text_light">February 2022</span> and I still
-        exploring technologies and frameworks that catch my interest.
-      </p>
-      <p className="bio__text">
-        I'm aware this is a fast growing, morden industry. Therefore, I made
-        sure to learn and use frameworks and tools such as{" "}
-        <span className="bio__text_blue">React</span>,{" "}
-        <span className="bio__text_blue">TypeScript</span>,{" "}
-        <span className="bio__text_blue">Redux</span>,{" "}
-        <span className="bio__text_blue">SCSS</span> in order to effeciently
-        build websites using laterst tools.
-      </p>
-      <p className="bio__text">
-        I'm now looking for a junior dev position to finaly kick start to my
-        career and learn amoung professionals.{" "}
-        <span className="bio__text_light">Drop me a line</span> in the contact
-        form in the tab "_contact-me" or check me at socials below, also you can
-        look at tab "contacts" in sidebar to call me or write a letter.
-      </p>
-      <div className="bio__soft-skills soft-skills">
-        <h2 className="soft-skills__title">Soft Skills</h2>
-        <div className="soft-skills__item-container">
-          {bio.skills.map((skill, index) => (
-            <div className="soft-skills__item" key={index}>
-              {skill.skill}
+    <div className="development">
+      <h2 className="development__title title">{development.title}</h2>
+      <div className="development__container">
+        {development.development.map((dev, index) => (
+          <div className="development__content" key={index}>
+            <p className="development__text_colored">{dev.time}</p>
+            <p className="development__text">
+              <span className="development__text_option">company:</span>
+              {dev.company}
+            </p>
+            <p className="development__text">
+              <span className="development__text_option">description:</span>
+              {dev.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const Skills = ({ skills }) => {
+  return (
+    <div className="skills">
+      <div className="skill__title title">{skills.title}</div>
+      <ul className="skills__container">
+        {skills.skills.map((skill, index) => (
+          <li className="skills__content" key={index}>
+            <div className="skills__icon">{skill.icon}</div>
+            <div className="skills__text">{skill.name}</div>
+            <div className="skills__progress">
+              <div
+                className="skills__progress-done"
+                style={{
+                  maxWidth: `${skill.progress}%`,
+                }}
+              >
+                {skill.progress}%
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-      <div className="bio__interests interests">
-        <h2 className="interests__title">interests</h2>
-        <ul className="interests__container">
-          {bio.interests.map((interest, index) => (
-            <li className="interests__item-container">
-              <div className="interests__icon-container">{interest.icon}</div>
-              <div className="interest__text">{interest.interest}</div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </article>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+const Projects = ({ cards, setIsModalOpen, setModalInfo, filtredCards }) => {
+  return (
+    <section className="layout__section projects">
+      <ProjectsCards
+        filtredCards={filtredCards}
+        cards={cards}
+        setIsModalOpen={setIsModalOpen}
+        setModalInfo={setModalInfo}
+      />
+    </section>
   );
 };
 
@@ -681,9 +740,17 @@ const App = () => {
   /*Flag for Typping Effect*/
   const [introFlag, setIntroFlag] = useState(true);
 
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
   return (
     <div className="layout">
-      <Header variant={variant} setVariant={setVariant} links={data.links} />
+      <Header
+        variant={variant}
+        setVariant={setVariant}
+        links={data.links}
+        isNavOpen={isNavOpen}
+        setIsNavOpen={setIsNavOpen}
+      />
       {variant === "hello" && (
         <HomePage introFlag={introFlag} setIntroFlag={setIntroFlag} />
       )}
@@ -712,7 +779,9 @@ const App = () => {
                 }
               >
                 {activeInfo === "bio" && <Bio {...data.info} />}
+                {activeInfo === "interests" && <Interests {...data.info} />}
                 {activeInfo === "education" && <Education {...data.info} />}
+                {activeInfo === "development" && <Development {...data.info} />}
                 {activeInfo === "skills" && <Skills {...data.info} />}
               </section>
             </div>
