@@ -113,6 +113,7 @@
   display: flex;
   align-items: center;
   padding: 10px 10px 10px 5px;
+  width: 100%;
   cursor: pointer;
   &__field {
     display: none;
@@ -134,7 +135,7 @@
       font-size: 18px;
     }
     &::before {
-      content: "";
+      content: '';
       display: block;
       position: relative;
       width: 18px;

@@ -1,18 +1,6 @@
-/* Home-page Component */
-
-.home-page {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  &__wrapper {
-    display: flex;
-    gap: 100px;
-  }
-}
 .intro {
   display: flex;
+  display: none;
   justify-content: center;
   flex-direction: column;
   gap: 81px;
@@ -49,7 +37,7 @@
   }
   // Blinking cursor
   &__position::after {
-    content: "|";
+    content: '|';
     animation: blink 1s infinite;
   }
 }
@@ -83,19 +71,4 @@
   50% {
     opacity: 0;
   }
-}
-
-/*Game Snake*/
-.home-page::after {
-  content: "";
-  position: absolute;
-  // background: url(../../assets/images/bg-home.svg);
-  background-repeat: no-repeat;
-  background-position: 100%;
-  background-size: contain;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }

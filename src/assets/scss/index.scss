@@ -1,9 +1,9 @@
 /*variables*/
-@import "/src/assets/scss/core/variables";
+@import '/src/assets/scss/core/variables';
 /*fonts*/
-@import "/src/assets/scss/core/fonts";
+@import '/src/assets/scss/core/fonts';
 /*components*/
-@import "/src/assets/scss/components/index";
+@import '/src/assets/scss/components/index';
 
 * {
   margin: 0;
@@ -43,7 +43,10 @@ ol {
   min-height: 100vh;
   height: 100%;
   width: 100vw;
-  padding: 1.5rem;
+  padding: $main-padding;
+  @media (max-width: 768px) {
+    padding: 0rem;
+  }
 }
 
 button,
@@ -55,11 +58,9 @@ select {
 }
 
 body {
-  font: {
-    family: $font-stack;
-    size: $font-size;
-    weight: 450;
-  }
+  font-family: $font-stack;
+  font-size: $font-size;
+  font-weight: 450;
   line-height: $line-height;
   color: $primary-color;
   background: #010c15;
@@ -78,6 +79,46 @@ body {
   background: $bg-color;
   border: 1px solid $color-border-main;
   border-radius: 8px;
+  @media (max-width: 768px) {
+    border-radius: 0px;
+  }
+}
+
+.aside {
+  width: $aside-width;
+  border-right: 1px solid $color-border-main;
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/*Home Page Component*/
+
+.home-page {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  &__wrapper {
+    display: flex;
+    gap: 100px;
+    &::after {
+      content: '';
+      position: absolute;
+      background: url(../../assets/images/bg-home.svg);
+      background-repeat: no-repeat;
+      background-position: 90%;
+      background-size: contain;
+      transform: scale(1.2) translateY(20px);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
 }
 
 /*About Page Component*/
@@ -256,7 +297,7 @@ body {
     flex-direction: column;
     font-size: 17px;
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       width: 100%;
       height: 2px;
